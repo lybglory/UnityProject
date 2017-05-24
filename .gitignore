@@ -1,8 +1,0 @@
-.vs
-*.asset
-*.sln
-*.csproj
-*.meta
-Library/
-ProjectSettings/
-Temp/
