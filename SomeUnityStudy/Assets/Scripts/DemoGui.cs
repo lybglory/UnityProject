@@ -10,7 +10,7 @@ public class DemoGui : MonoBehaviour {
     Rect rectPostion = GetCenter(200, 100);    //只返回一个Window，实现拖拽
     void OnGUI()
     {
-        //Window一定要有返回值，否则不能实现拖拽
+        //Window一定要有返回值.声明全局变量，避免帧擦除
         rectPostion = GUILayout.Window(1, rectPostion, Func, "登录界面");
     }
 
