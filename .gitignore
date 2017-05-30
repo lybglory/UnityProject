@@ -6,3 +6,8 @@
 Library/
 ProjectSettings/
 Temp/
+*.sbsar
+*.psd
+*.mat
+Standard Assets/
+*.exr
