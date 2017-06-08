@@ -12,7 +12,7 @@ public class GuiSkin : MonoBehaviour {
     private void OnGUI()
     {
         GUI.skin = btnGuiSkin;
-        //GetStyle(stirng txt)这个参数需要与GUI Skin Custom Style中的Name保持一直。
+        //GetStyle(stirng txt)这个参数需要与GUI Skin Custom Style中的Name保持一致。
         GUI.Button(new Rect(0, 0, 700, 700), texture2d_btn, btnGuiSkin.GetStyle("Btn1"));
     }
 
