@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GUI实现窗口关闭和弹窗 : MonoBehaviour {
+
     private bool isShow = false;//标志位
     private void OnGUI()
     {
@@ -14,6 +15,7 @@ public class GUI实现窗口关闭和弹窗 : MonoBehaviour {
             isShow = true;
         }
         if (isShow) {
+            //GUILayout.Window(int id,Rect screentRect, WindowFunction func,string text); 
             GUILayout.Window(1,GetRecPosition(200,100), Func,"My windows");
         }
         
