@@ -10,12 +10,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class StartScenesGUI : MonoBehaviour {
     public GUISkin ParkourGUISkin;
     public Texture2D texturePlay;
     public Texture2D textureCancle;
-    public Texture2D textureMinVol;
+    public Texture2D textureVol;
     private bool IsPlay;
     private bool IsCancle;
 
@@ -24,40 +24,49 @@ public class StartScenesGUI : MonoBehaviour {
     private float horizonCancleBtn;           //退出Btn水平位置
     private float verticalCancleBtn;          //退出Btn垂直位置
 
-    private float horizonMinVolBtn;           //静音Btn水平位置
-    private float verticalMinVolBtn;          //静音Btn垂直位置
-    private float horizonNormalVolBtn;        //正常音Btn水平位置
-    private float verticalNormalVolBtn;       //正常音Btn垂直位置
-    private float horizonMaxVolBtn;           //最大音Btn水平位置
-    private float verticalMaxVolBtn;          //最大音Btn垂直位置
+    private float horizonVolBtn;           //音量Btn水平位置
+    private float verticalVolBtn;          //音量Btn垂直位置
 
+    private string strVolBtn = "Btn_MaxVol";//音量btn名称
+ 
     // Use this for initialization
-    void Start () {
+    void Start() {
         //调用方法
         horizonPlayBtn = GetBtnXPosion(texturePlay);
         verticalPlayBtn = GetBtnYPosion(texturePlay);
         horizonCancleBtn = GetBtnXPosion(textureCancle);
         verticalCancleBtn = GetBtnYPosion(textureCancle);
+
+        horizonVolBtn = GetBtnXPosion(textureVol);
+        verticalVolBtn = GetBtnYPosion(textureVol);
+
+        GlobalManager.GlVol = EnumVolumn.MaxVolu;//默认全音量
     }
 
     private void OnGUI()
     {   //开始Btn,GUI是从左上角为0点+100位置居下100
         GUI.skin = ParkourGUISkin;
-        if (GUI.Button(new Rect(horizonPlayBtn, verticalPlayBtn+100, texturePlay.width, texturePlay.height), "", ParkourGUISkin.GetStyle("Btn_Play"))) {
+        if (GUI.Button(new Rect(horizonPlayBtn, verticalPlayBtn + 100, texturePlay.width, texturePlay.height), "", ParkourGUISkin.GetStyle("Btn_Play"))) {
             Debug.Log("点击开始游戏");
+            SceneManager.LoadSceneAsync("2_LevelOne");
         }
 
         //退出btn，GUI是从左上角为0点+200位置居下200，不让它重叠
-        if (GUI.Button(new Rect(horizonCancleBtn,verticalCancleBtn+200,textureCancle.width,textureCancle.height),"",ParkourGUISkin.GetStyle("Btn_Cancle"))) {
+        if (GUI.Button(new Rect(horizonCancleBtn, verticalCancleBtn + 200, textureCancle.width, textureCancle.height), "", ParkourGUISkin.GetStyle("Btn_Cancle"))) {
             Debug.Log("点击退出");
+        }
+
+        if (GUI.Button(new Rect(horizonVolBtn, verticalVolBtn, textureVol.width, textureVol.height), "", ParkourGUISkin.GetStyle(strVolBtn)))
+        {
+            Changevolume(GlobalManager.GlVol);
         }
 
     }
 
     // Update is called once per frame
-    void Update () {
-		
-	}
+    void Update() {
+
+    }
 
     /// <summary>
     /// 获取btn水平位置
@@ -66,8 +75,15 @@ public class StartScenesGUI : MonoBehaviour {
     /// <returns>返回btn水平位置</returns>
     private float GetBtnXPosion(Texture2D btnTexture) {
         float btnHorizon;
+        //音量按钮就不是居中了
+        if (btnTexture != textureVol) {
+            btnHorizon = (Screen.width - btnTexture.width) / 2;
+        }
+        else {//音量按钮处理
+            btnHorizon = Screen.width - btnTexture.width;
+        }
         //居中位置
-        return btnHorizon =(Screen.width - btnTexture.width) / 2;
+        return btnHorizon;
     }
 
     /// <summary>
@@ -78,6 +94,35 @@ public class StartScenesGUI : MonoBehaviour {
     private float GetBtnYPosion(Texture2D btnTexture)
     {
         float btnVertical;
-        return btnVertical = (Screen.height - btnTexture.height) / 2;
+        //当不是音量按钮的时候
+        if (btnTexture != textureVol)
+        {
+
+            btnVertical = (Screen.height - btnTexture.height) / 2;
+        }
+        else {
+            btnVertical = Screen.height - btnTexture.height;
+        }
+        return btnVertical;
     }
+
+    public void Changevolume(EnumVolumn VolumeBtn){
+        switch (VolumeBtn) {
+            case EnumVolumn.None:
+                break;
+            case EnumVolumn.MaxVolu:
+                GlobalManager.GlVol = EnumVolumn.MinVolu;
+                strVolBtn = "Btn_MinVol";                       //设置音量的btn
+                break;
+            case EnumVolumn.MinVolu:
+                GlobalManager.GlVol = EnumVolumn.NormalVolu;
+                strVolBtn = "Btn_NormalVol";                    //设置音量的btn
+                break;
+            case EnumVolumn.NormalVolu:
+                GlobalManager.GlVol = EnumVolumn.MaxVolu;
+                strVolBtn = "Btn_MaxVol";                       //设置音量的btn
+                break;
+        }
+    }
+    
 }
