@@ -12,9 +12,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 音量枚举，枚举定义在类的外边
+/// 音量枚举。
 /// </summary>
-public enum EnumVolumn {
+public enum EnumVolume {
     None,
     MinVolu,
     NormalVolu,
@@ -28,6 +28,6 @@ public class GlobalManager : MonoBehaviour {
     /// <summary>
     /// 全局静态音量变量
     /// </summary>
-    public static EnumVolumn GlVol;
+    public static EnumVolume GlVol;
 	
 }

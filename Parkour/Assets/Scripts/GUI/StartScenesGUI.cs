@@ -28,8 +28,16 @@ public class StartScenesGUI : MonoBehaviour {
     private float verticalVolBtn;          //音量Btn垂直位置
 
     private string strVolBtn = "Btn_MaxVol";//音量btn名称
- 
-    // Use this for initialization
+
+    private AudioSource audioStartBg;            //音量组件
+
+    private void Awake()
+    {   //持有音频组件
+        audioStartBg = GameObject.Find("_AudioManager/Audio").GetComponent<AudioSource>();
+        audioStartBg.Play();
+        audioStartBg.loop = true;
+    }
+
     void Start() {
         //调用方法
         horizonPlayBtn = GetBtnXPosion(texturePlay);
@@ -40,7 +48,7 @@ public class StartScenesGUI : MonoBehaviour {
         horizonVolBtn = GetBtnXPosion(textureVol);
         verticalVolBtn = GetBtnYPosion(textureVol);
 
-        GlobalManager.GlVol = EnumVolumn.MaxVolu;//默认全音量
+        GlobalManager.GlVol = EnumVolume.MaxVolu;//默认全音量
     }
 
     private void OnGUI()
@@ -75,7 +83,7 @@ public class StartScenesGUI : MonoBehaviour {
     /// <returns>返回btn水平位置</returns>
     private float GetBtnXPosion(Texture2D btnTexture) {
         float btnHorizon;
-        //音量按钮就不是居中了
+        //音量按钮就不是居中了。不走此句代码
         if (btnTexture != textureVol) {
             btnHorizon = (Screen.width - btnTexture.width) / 2;
         }
@@ -106,21 +114,26 @@ public class StartScenesGUI : MonoBehaviour {
         return btnVertical;
     }
 
-    public void Changevolume(EnumVolumn VolumeBtn){
+    public void Changevolume(EnumVolume VolumeBtn){
         switch (VolumeBtn) {
-            case EnumVolumn.None:
+            //存储登入场景中设置的音量枚举，其他关卡场景根据这个枚举设置背景音乐的大小
+            case EnumVolume.None:
+                audioStartBg.volume = 0;                            //设置最小音量
                 break;
-            case EnumVolumn.MaxVolu:
-                GlobalManager.GlVol = EnumVolumn.MinVolu;
-                strVolBtn = "Btn_MinVol";                       //设置音量的btn
+            case EnumVolume.MaxVolu:
+                GlobalManager.GlVol = EnumVolume.MinVolu;  
+                strVolBtn = "Btn_MinVol";                       //设置静音音量的btn，赋值给全局变量。
+                audioStartBg.volume = 0;                            //设置最小音量
                 break;
-            case EnumVolumn.MinVolu:
-                GlobalManager.GlVol = EnumVolumn.NormalVolu;
-                strVolBtn = "Btn_NormalVol";                    //设置音量的btn
+            case EnumVolume.MinVolu:
+                GlobalManager.GlVol = EnumVolume.NormalVolu;
+                strVolBtn = "Btn_NormalVol";                    //设置最小音量的btn，赋值给全局变量。
+                audioStartBg.volume = 0.5f;                          //设置正常音量
                 break;
-            case EnumVolumn.NormalVolu:
-                GlobalManager.GlVol = EnumVolumn.MaxVolu;
-                strVolBtn = "Btn_MaxVol";                       //设置音量的btn
+            case EnumVolume.NormalVolu:
+                GlobalManager.GlVol = EnumVolume.MaxVolu;       //存储音量枚举变量，便于其他场景传值。
+                strVolBtn = "Btn_MaxVol";                       //设置最大音量的btn，赋值给全局变量。
+                audioStartBg.volume = 1f;                            //设置最大音量
                 break;
         }
     }
