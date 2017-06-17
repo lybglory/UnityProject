@@ -22,6 +22,17 @@ public enum EnumVolume {
 }
 
 /// <summary>
+/// 游戏状态枚举
+/// </summary>
+public enum EnumGameState {
+    None,
+    Ready,
+    Playing,
+    Pause,
+    End
+}
+
+/// <summary>
 /// 全局参数管理类
 /// </summary>
 public class GlobalManager : MonoBehaviour {
@@ -29,5 +40,11 @@ public class GlobalManager : MonoBehaviour {
     /// 全局静态音量变量
     /// </summary>
     public static EnumVolume GlVol;
+
+
+    /// <summary>
+    /// 全局静态游戏状态
+    /// </summary>
+    public static EnumGameState GlGameState;
 	
 }
