@@ -21,6 +21,7 @@ public class StartLevel_Manager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        GlobalManager.GlGameState = EnumGameState.Ready;
         bridgeOriginPosition=ObjBridge.transform.position;
     }
 	
