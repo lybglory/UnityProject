@@ -12,6 +12,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;//异步加载命名空间
 
 public class LevelOneScenesGUI : MonoBehaviour {
     private bool isShowCountdownNum = false;        //是否显示倒计时
@@ -19,15 +20,19 @@ public class LevelOneScenesGUI : MonoBehaviour {
     public Texture2D texture2DNum3;                 //倒计时数字3贴图
     public Texture2D texture2DNum2;                 //倒计时数字2贴图
     public Texture2D texture2DNum1;                 //倒计时数字1贴图
+    public Texture2D textureGameOver;               //游戏结束贴图
+
     private float num1HorizonPosition;                    //倒计时数字1贴图水平位置                        
     private float num1VerticalPosition;                   //倒计时数字1贴图垂直位置
     private float num2HorizonPosition;                    //倒计时数字1贴图水平位置                        
     private float num2VerticalPosition;                   //倒计时数字1贴图垂直位置
     private float num3HorizonPosition;                    //倒计时数字1贴图水平位置                        
     private float num3VerticalPosition;                   //倒计时数字1贴图垂直位置
+    private float gameOverHorizonPosition;                //游戏结束贴图水平位置                        
+    private float gameOverVerticalPosition;               //游戏结束贴图垂直位置
 
     private string texture2DName;                   //倒计时数字贴图名称
-
+    private string strGameOverScene;                //结算场景名称
 
     /// <summary>
     /// 倒计时协程
@@ -73,16 +78,19 @@ public class LevelOneScenesGUI : MonoBehaviour {
                 GUI.DrawTexture(new Rect(num1HorizonPosition, num1VerticalPosition, texture2DNum1.width, texture2DNum1.height), texture2DNum1);
             }
         }
+        if (GlobalManager.GlGameState==EnumGameState.End) {
+            GUI.DrawTexture(new Rect(gameOverHorizonPosition, gameOverVerticalPosition, textureGameOver.width, textureGameOver.height), textureGameOver);
+        }
     }
 
     
     /// <summary>
-    /// 获取中央位置
+    /// 获取贴图中央位置
     /// </summary>
     /// <param name="textureNum">传入贴图</param>
-    /// <param name="isX">是否求X轴水平位置</param>
+    /// <param name="isX">true求X轴水平位置,false求Y轴</param>
     /// <returns>返回坐标值</returns>
-    private int GetCountdownPosition(Texture2D textureNum,bool isX) {
+    private int GetTexturePosition(Texture2D textureNum,bool isX) {
         int position;
         //true位求X轴坐标
         if (isX)
@@ -95,18 +103,46 @@ public class LevelOneScenesGUI : MonoBehaviour {
         return position;
 
     }
-
+    private void Awake()
+    {
+        strGameOverScene = "3_GameOver";
+    }
     void Start()
     {   //设置倒计时贴图位置
-        num1HorizonPosition = GetCountdownPosition(texture2DNum1, true);
-        num1VerticalPosition = GetCountdownPosition(texture2DNum1, false);
+        num1HorizonPosition = GetTexturePosition(texture2DNum1, true);
+        num1VerticalPosition = GetTexturePosition(texture2DNum1, false);
 
-        num2HorizonPosition = GetCountdownPosition(texture2DNum2, true);
-        num2VerticalPosition = GetCountdownPosition(texture2DNum2, false);
+        num2HorizonPosition = GetTexturePosition(texture2DNum2, true);
+        num2VerticalPosition = GetTexturePosition(texture2DNum2, false);
 
-        num3HorizonPosition = GetCountdownPosition(texture2DNum3, true);
-        num3VerticalPosition = GetCountdownPosition(texture2DNum3, false);
+        num3HorizonPosition = GetTexturePosition(texture2DNum3, true);
+        num3VerticalPosition = GetTexturePosition(texture2DNum3, false);
+
+        gameOverHorizonPosition = GetTexturePosition(textureGameOver, true);
+        gameOverVerticalPosition = GetTexturePosition(textureGameOver, false);
         //执行协程
         StartCoroutine("Countdown");
+        StartCoroutine("GameStateCheck");
+    }
+
+
+    IEnumerator GameStateCheck() {
+        yield return new WaitForSeconds(1f);
+        Debug.Log("游戏状态等待一秒");
+        while (true) {
+            Debug.Log("进入while循环开始执行等待一秒");
+            yield return new WaitForSeconds(1f);
+            Debug.Log("while循环等待一秒已到开始判定游戏状态");
+            if (GlobalManager.GlGameState == EnumGameState.End)
+            {
+                Debug.Log("游戏状态="+GlobalManager.GlGameState.ToString());
+
+                yield return new WaitForSeconds(2f);
+                Debug.Log("等待2秒结束，开始加载结算界面");
+                SceneManager.LoadScene(strGameOverScene);
+            }
+        }
+        
+        
     }
 }
