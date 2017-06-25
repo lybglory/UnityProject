@@ -19,7 +19,7 @@ public class Trees : MonoBehaviour {
     }
     private void OnCollisionEnter(Collision collision)
     {   //一旦障碍物碰到英雄，游戏结束
-        if (collision.gameObject.name== plName) {
+        if (collision.gameObject.name.Equals(plName)) {
             GlobalManager.GlGameState = EnumGameState.End;
         }
     }
