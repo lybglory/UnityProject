@@ -16,11 +16,11 @@ public class LevelOne_Manager : MonoBehaviour {
 
     private void Awake()
     {
-        aduioLevelOne=GameObject.Find("_LevelOneAudioManager/Audio").GetComponent<AudioSource>();
+        aduioLevelOne=GameObject.Find("_LevelOneAudioManager/LevelOneAudio").GetComponent<AudioSource>();
     }
     // Use this for initialization
     void Start () {
-        aduioLevelOne = GameObject.Find("_LevelOneAudioManager/Audio").GetComponent<AudioSource>();
+        aduioLevelOne = GameObject.Find("_LevelOneAudioManager/LevelOneAudio").GetComponent<AudioSource>();
         aduioLevelOne.Play();
         aduioLevelOne.loop = true;              //开启循环播放
         //根据开始场景保存下来的全局静态音量枚举设置音量大小

@@ -37,14 +37,19 @@ public enum EnumGameState {
 /// </summary>
 public class GlobalManager : MonoBehaviour {
     /// <summary>
-    /// 全局静态音量变量
+    /// 全局静态音量变量（默认最大音）
     /// </summary>
-    public static EnumVolume GlVol;
+    public static EnumVolume GlVol=EnumVolume.MaxVolu;
 
 
     /// <summary>
-    /// 全局静态游戏状态
+    /// 全局静态游戏状态（默认为none）
     /// </summary>
-    public static EnumGameState GlGameState;
+    public static EnumGameState GlGameState=EnumGameState.None;
+
+    /// <summary>
+    /// 全局吃到的红宝石数量
+    /// </summary>
+    public static int DiamondNum=0;
 	
 }
