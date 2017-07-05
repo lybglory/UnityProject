@@ -84,42 +84,24 @@ public class LevelOneScenesGUI : MonoBehaviour {
     }
 
     
-    /// <summary>
-    /// 获取贴图中央位置
-    /// </summary>
-    /// <param name="textureNum">传入贴图</param>
-    /// <param name="isX">true求X轴水平位置,false求Y轴</param>
-    /// <returns>返回坐标值</returns>
-    private int GetTexturePosition(Texture2D textureNum,bool isX) {
-        int position;
-        //true位求X轴坐标
-        if (isX)
-        {
-            position = (Screen.width - textureNum.width) / 2;
-        }
-        else {//false返回Y轴坐标
-            position = (Screen.height - textureNum.height) / 2;
-        }
-        return position;
-
-    }
+    
     private void Awake()
     {
         strGameOverScene = "3_GameOver";
     }
     void Start()
     {   //设置倒计时贴图位置
-        num1HorizonPosition = GetTexturePosition(texture2DNum1, true);
-        num1VerticalPosition = GetTexturePosition(texture2DNum1, false);
+        num1HorizonPosition = GlobalManager.GetTexturePosition(texture2DNum1, true);
+        num1VerticalPosition = GlobalManager.GetTexturePosition(texture2DNum1, false);
 
-        num2HorizonPosition = GetTexturePosition(texture2DNum2, true);
-        num2VerticalPosition = GetTexturePosition(texture2DNum2, false);
+        num2HorizonPosition = GlobalManager.GetTexturePosition(texture2DNum2, true);
+        num2VerticalPosition = GlobalManager.GetTexturePosition(texture2DNum2, false);
 
-        num3HorizonPosition = GetTexturePosition(texture2DNum3, true);
-        num3VerticalPosition = GetTexturePosition(texture2DNum3, false);
+        num3HorizonPosition = GlobalManager.GetTexturePosition(texture2DNum3, true);
+        num3VerticalPosition = GlobalManager.GetTexturePosition(texture2DNum3, false);
 
-        gameOverHorizonPosition = GetTexturePosition(textureGameOver, true);
-        gameOverVerticalPosition = GetTexturePosition(textureGameOver, false);
+        gameOverHorizonPosition = GlobalManager.GetTexturePosition(textureGameOver, true);
+        gameOverVerticalPosition = GlobalManager.GetTexturePosition(textureGameOver, false);
         //执行协程
         StartCoroutine("Countdown");
         StartCoroutine("GameStateCheck");
