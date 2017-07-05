@@ -114,11 +114,13 @@ public class LevelOneScenesGUI : MonoBehaviour {
         while (true) {
             //Debug.Log("进入while循环开始执行等待一秒");
             yield return new WaitForSeconds(1f);
+            //全局里程
+            ++GlobalManager.Shifting;
+
             //Debug.Log("while循环等待一秒已到开始判定游戏状态");
             if (GlobalManager.GlGameState == EnumGameState.End)
             {
                 //Debug.Log("游戏状态="+GlobalManager.GlGameState.ToString());
-
                 yield return new WaitForSeconds(2f);
                 //Debug.Log("等待2秒结束，开始加载结算界面");
                 SceneManager.LoadScene(strGameOverScene);

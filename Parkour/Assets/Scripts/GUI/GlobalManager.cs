@@ -54,7 +54,6 @@ public class GlobalManager : MonoBehaviour {
     /// </summary>
     public static int DiamondNum=0;
 
-
     /// <summary>
     /// 获取贴图中央位置
     /// </summary>
@@ -76,5 +75,10 @@ public class GlobalManager : MonoBehaviour {
         return position;
 
     }
+
+    /// <summary>
+    /// 全局里程
+    /// </summary>
+    public static int Shifting = 0;
 
 }
