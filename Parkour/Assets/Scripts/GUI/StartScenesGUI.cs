@@ -54,13 +54,13 @@ public class StartScenesGUI : MonoBehaviour {
     private void OnGUI()
     {   //开始Btn,GUI是从左上角为0点+100位置居下100
         GUI.skin = ParkourGUISkin;
-        if (GUI.Button(new Rect(horizonPlayBtn, verticalPlayBtn + 100, texturePlay.width, texturePlay.height), "", ParkourGUISkin.GetStyle("Btn_Play"))) {
+        if (GUI.Button(new Rect(horizonPlayBtn, verticalPlayBtn, texturePlay.width, texturePlay.height), "", ParkourGUISkin.GetStyle("Btn_Play"))) {
             Debug.Log("点击开始游戏");
             SceneManager.LoadSceneAsync("2_LevelOne");
         }
 
         //退出btn，GUI是从左上角为0点+200位置居下200，不让它重叠
-        if (GUI.Button(new Rect(horizonCancleBtn, verticalCancleBtn + 200, textureCancle.width, textureCancle.height), "", ParkourGUISkin.GetStyle("Btn_Cancle"))) {
+        if (GUI.Button(new Rect(horizonCancleBtn, verticalCancleBtn + 80, textureCancle.width, textureCancle.height), "", ParkourGUISkin.GetStyle("Btn_Cancle"))) {
             Debug.Log("点击退出");
         }
 
