@@ -10,16 +10,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class LevelOne_Manager : MonoBehaviour {
     private AudioSource aduioLevelOne;      //持有音频组件
-
+    private string strGameOverScene;                //结算场景名称
     private void Awake()
     {
-        aduioLevelOne=GameObject.Find("_LevelOneAudioManager/LevelOneAudio").GetComponent<AudioSource>();
+        strGameOverScene = "3_GameOver";
+        aduioLevelOne =GameObject.Find("_LevelOneAudioManager/LevelOneAudio").GetComponent<AudioSource>();
     }
     // Use this for initialization
     void Start () {
+        //执行协程
+        StartCoroutine("Countdown");
+        StartCoroutine("GameStateCheck");
         aduioLevelOne = GameObject.Find("_LevelOneAudioManager/LevelOneAudio").GetComponent<AudioSource>();
         aduioLevelOne.Play();
         aduioLevelOne.loop = true;              //开启循环播放
@@ -44,4 +48,26 @@ public class LevelOne_Manager : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    IEnumerator GameStateCheck()
+    {
+        yield return new WaitForSeconds(1f);
+        //Debug.Log("游戏状态等待一秒");
+        while (true)
+        {
+            //Debug.Log("进入while循环开始执行等待一秒");
+            yield return new WaitForSeconds(1f);
+            //全局里程
+            ++GlobalManager.Shifting;
+
+            //Debug.Log("while循环等待一秒已到开始判定游戏状态");
+            if (GlobalManager.GlGameState == EnumGameState.End)
+            {
+                //Debug.Log("游戏状态="+GlobalManager.GlGameState.ToString());
+                yield return new WaitForSeconds(2f);
+                //Debug.Log("等待2秒结束，开始加载结算界面");
+                SceneManager.LoadScene(strGameOverScene);
+            }
+        }
+    }
 }

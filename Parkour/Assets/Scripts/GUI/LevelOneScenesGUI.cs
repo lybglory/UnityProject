@@ -32,7 +32,6 @@ public class LevelOneScenesGUI : MonoBehaviour {
     private float gameOverVerticalPosition;               //游戏结束贴图垂直位置
 
     private string texture2DName;                   //倒计时数字贴图名称
-    private string strGameOverScene;                //结算场景名称
 
     /// <summary>
     /// 倒计时协程
@@ -87,7 +86,7 @@ public class LevelOneScenesGUI : MonoBehaviour {
     
     private void Awake()
     {
-        strGameOverScene = "3_GameOver";
+        
     }
     void Start()
     {   //设置倒计时贴图位置
@@ -102,31 +101,8 @@ public class LevelOneScenesGUI : MonoBehaviour {
 
         gameOverHorizonPosition = GlobalManager.GetTexturePosition(textureGameOver, true);
         gameOverVerticalPosition = GlobalManager.GetTexturePosition(textureGameOver, false);
-        //执行协程
         StartCoroutine("Countdown");
-        StartCoroutine("GameStateCheck");
     }
 
 
-    IEnumerator GameStateCheck() {
-        yield return new WaitForSeconds(1f);
-        //Debug.Log("游戏状态等待一秒");
-        while (true) {
-            //Debug.Log("进入while循环开始执行等待一秒");
-            yield return new WaitForSeconds(1f);
-            //全局里程
-            ++GlobalManager.Shifting;
-
-            //Debug.Log("while循环等待一秒已到开始判定游戏状态");
-            if (GlobalManager.GlGameState == EnumGameState.End)
-            {
-                //Debug.Log("游戏状态="+GlobalManager.GlGameState.ToString());
-                yield return new WaitForSeconds(2f);
-                //Debug.Log("等待2秒结束，开始加载结算界面");
-                SceneManager.LoadScene(strGameOverScene);
-            }
-        }
-        
-        
-    }
 }
