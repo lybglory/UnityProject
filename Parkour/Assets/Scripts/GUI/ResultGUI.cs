@@ -41,15 +41,15 @@ public class ResultGUI : MonoBehaviour {
         //绘制背景贴图,new Rect（屏幕中间的X轴position，Y轴position，贴图的长度，贴图的宽度）
         GUI.DrawTexture(new Rect(XcenterPosition, YcenterPosition, TextureResultBg.width,TextureResultBg.height), TextureResultBg);
         //绘制路程
-        GUI.Label(new Rect(550,250,159,200),"总里程：");
+        GUI.Label(new Rect(550,250,150,150),"总里程：");
         //控制全局里程的显示
         if (_isSHowShifting) {
-            GUI.Label(new Rect(700, 250, 159, 200), _tempShifting.ToString());
+            GUI.Label(new Rect(680, 250, 150, 150), _tempShifting.ToString());
         }
         //绘制红宝石贴图
         GUI.DrawTexture(new Rect(550, 300, 50, 50), TextureRedDiamond);
         if (_isSHowDiamondNumber) {
-            GUI.Label(new Rect(700, 300, 150, 50), _tempDiamondNumber.ToString());
+            GUI.Label(new Rect(680, 300, 150, 50), _tempDiamondNumber.ToString());
         }
         IsTryAgain=GUI.Button(new Rect(TryAgainBtnHoriPosition-200,TryAgainBtnVeriticalPosition-150, TextureTryAgainBtn.width, TextureTryAgainBtn.height),"", ResultGUISkin.GetStyle("Btn_TryAgain"));
         IsCancel = GUI.Button(new Rect(CancelBtnHoriPosition + 200, CancelBtnVeriticalPosition - 150, TextureCancel.width, TextureCancel.height), "", ResultGUISkin.GetStyle("Btn_Cancel"));
@@ -61,7 +61,6 @@ public class ResultGUI : MonoBehaviour {
         //调用居中方法，求出位置
         XcenterPosition = GlobalManager.GetTexturePosition(TextureResultBg, true);
         YcenterPosition = GlobalManager.GetTexturePosition(TextureResultBg,false);
-        GlobalManager.Shifting = 20;//临时定义全局里程，测试用
 
         //获取重新开始btn贴图中央位置
         TryAgainBtnHoriPosition = GlobalManager.GetTexturePosition(TextureTryAgainBtn, true);
@@ -98,6 +97,7 @@ public class ResultGUI : MonoBehaviour {
             if (_tempShifting >=GlobalManager.Shifting-1)
             {
                 StopCoroutine("ShowShifting");
+                Debug.Log("结算界面:"+ GlobalManager.Shifting);
             }
             ++_tempShifting;
             _isSHowShifting = true;

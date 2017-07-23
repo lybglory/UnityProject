@@ -31,7 +31,10 @@ public class LevelOneScenesGUI : MonoBehaviour {
     private float gameOverHorizonPosition;                //游戏结束贴图水平位置                        
     private float gameOverVerticalPosition;               //游戏结束贴图垂直位置
 
-    private string texture2DName;                   //倒计时数字贴图名称
+    private string texture2DName;                         //倒计时数字贴图名称
+
+    public GUISkin levelOnGUISkin;                        //皮肤
+    public Texture2D textureRedDiamond;                   //红宝石
 
     /// <summary>
     /// 倒计时协程
@@ -67,7 +70,15 @@ public class LevelOneScenesGUI : MonoBehaviour {
     }
 
     private void OnGUI()
-    {   //由这个标志位控制是否需要显示倒计时
+    {
+        GUI.skin = levelOnGUISkin;
+        //左上角显示里程
+        GUI.Label(new Rect(0, 0, 150, 50), "里程：" + GlobalManager.Shifting.ToString());
+        GUI.DrawTexture(new Rect(150, 0, 50, 50), textureRedDiamond);
+        GUI.Label(new Rect(200,0,100,50),GlobalManager.DiamondNum.ToString());
+
+
+        //由这个标志位控制是否需要显示倒计时
         if (isShowCountdownNum) {
             if (countDownNum == 3) {
                 GUI.DrawTexture(new Rect(num3HorizonPosition, num3VerticalPosition, texture2DNum3.width, texture2DNum3.height), texture2DNum3);
@@ -89,7 +100,8 @@ public class LevelOneScenesGUI : MonoBehaviour {
         
     }
     void Start()
-    {   //设置倒计时贴图位置
+    {
+        //设置倒计时贴图位置
         num1HorizonPosition = GlobalManager.GetTexturePosition(texture2DNum1, true);
         num1VerticalPosition = GlobalManager.GetTexturePosition(texture2DNum1, false);
 
