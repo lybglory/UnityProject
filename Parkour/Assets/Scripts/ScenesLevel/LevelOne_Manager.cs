@@ -12,10 +12,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LevelOne_Manager : MonoBehaviour {
-    private AudioSource aduioLevelOne;      //持有音频组件
+    private AudioSource aduioLevelOne;              //持有音频组件
     private string strGameOverScene;                //结算场景名称
-    public GameObject orinalObj;            //预制原型
-    public GameObject DynamicCreateObj;  //动态创建道具对象
+    public GameObject orinalObj;                    //预制原型
+    public GameObject DynamicCreateObj;             //动态创建道具对象
+    public GameObject ObjLeft;                      //参考对象，X坐标最小值 （左边）
+    public GameObject ObjRight;                     //参考对象，X坐标最大值 （右边）
+    public GameObject ObjHero;
     private void Awake()
     {
         strGameOverScene = "3_GameOver";
@@ -23,12 +26,17 @@ public class LevelOne_Manager : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
+        //try again之后置零
+        GlobalManager.GlGameState = EnumGameState.Ready;
+        GlobalManager.Shifting = 0;
+        GlobalManager.DiamondNum = 0;
+
         //执行协程
         StartCoroutine("GameStateCheck");
 
         //动态生成道具
         //1秒创建一次
-        InvokeRepeating("DynamicCreatePrefab", 1, 1);
+        InvokeRepeating("DynamicCreateAllObj", 1, 1);
 
 
         aduioLevelOne = GameObject.Find("_LevelOneAudioManager/LevelOneAudio").GetComponent<AudioSource>();
@@ -64,8 +72,12 @@ public class LevelOne_Manager : MonoBehaviour {
         {
             //Debug.Log("进入while循环开始执行等待一秒");
             yield return new WaitForSeconds(1f);
-            //全局里程
-            ++GlobalManager.Shifting;
+            //当游戏在玩的时候，开始统计里程
+            if (GlobalManager.GlGameState==EnumGameState.Playing) {
+                //全局里程
+                ++GlobalManager.Shifting;
+            }
+           
 
             //Debug.Log("while循环等待一秒已到开始判定游戏状态");
             if (GlobalManager.GlGameState == EnumGameState.End)
@@ -74,12 +86,13 @@ public class LevelOne_Manager : MonoBehaviour {
                 yield return new WaitForSeconds(2f);
                 //Debug.Log("等待2秒结束，开始加载结算界面");
                 SceneManager.LoadScene(strGameOverScene);
+                Debug.Log("LevelOne最终里程："+ GlobalManager.Shifting);
             }
         }
     }
 
     /// <summary>
-    /// 动态创建道具
+    /// 动态创建道具的方法
     /// </summary>
     /// <param name="originalObj">道具预制原型</param>
     /// <param name="minX">坐标X最小值</param>
@@ -89,7 +102,7 @@ public class LevelOne_Manager : MonoBehaviour {
     /// <param name="maxZ">坐标Z最大值</param>
     /// <param name="destoryTime">销毁时间</param>
     /// <param name="diamondNum">克隆数量</param>
-    private void DynamicCreatePrefab(GameObject originalObj,int minX,int maxX,int y, int minZ,int maxZ, int destroyTime, int diamondNum) {
+    private void DynamicCreatePrefab(GameObject originalObj,float minX, float maxX, float y, float minZ, float maxZ, float destroyTime, int diamondNum) {
         /*  8个参数：
             红宝石x坐标最小值，最大值，
             z坐标min、max。
@@ -108,11 +121,15 @@ public class LevelOne_Manager : MonoBehaviour {
         Objs[7] = destroyTime;
 
         //发送数据
-        DynamicCreateObj.SendMessage("CreateDiamondPrefab",SendMessageOptions.DontRequireReceiver);
+        DynamicCreateObj.SendMessage("CreateDiamondPrefab",Objs, SendMessageOptions.DontRequireReceiver);
     }
 
     /// <summary>
-    /// 动态创建所有道具
+    /// 根据里程数来动态创建所有道具
     /// </summary>
-    private void DynamicCreateAllObj() { }
+    private void DynamicCreateAllObj() {
+        if (GlobalManager.Shifting==0) {
+            DynamicCreatePrefab(orinalObj,ObjLeft.transform.position.x,ObjRight.transform.position.x,ObjLeft.transform.position.y,ObjHero.transform.position.z+100,ObjHero.transform.position.z+300,30,10);
+        }
+    }
 }
