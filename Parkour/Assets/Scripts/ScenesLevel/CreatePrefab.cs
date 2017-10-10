@@ -37,8 +37,8 @@ public class CreatePrefab : MonoBehaviour {
 
             }
         }
-        GameObject cloneObj = Instantiate(originObj);
-        cloneObj.transform.position = new Vector3(GetRandomValue(minX,minZ), y, GetRandomValue(minZ,maxZ));
+        GameObject cloneObj = (GameObject)Instantiate(originObj);
+        cloneObj.transform.position = new Vector3(GetRandomValue(minX,maxX), y, GetRandomValue(minZ,maxZ));
         //销毁时间
         Destroy(cloneObj, destroyTime);
     }

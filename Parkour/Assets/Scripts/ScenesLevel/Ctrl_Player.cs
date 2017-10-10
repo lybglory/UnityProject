@@ -25,7 +25,7 @@ public class Ctrl_Player : MonoBehaviour {
 	void Update () {
         //根据游戏状态，判定玩家是否奔跑。当倒计时结束后玩家才开始奔跑
         if (GlobalManager.GlGameState != EnumGameState.Playing) {
-            plAnimation.Play("Stand");
+            plAnimation.Play("Walking");
         } else if (GlobalManager.GlGameState== EnumGameState.Playing) {
             plAnimation.Play("Run");
             this.transform.Translate(Vector3.forward * runSpeed, Space.Self);//以第一人视角跑动

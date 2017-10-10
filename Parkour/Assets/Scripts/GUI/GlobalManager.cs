@@ -41,7 +41,7 @@ public class GlobalManager : MonoBehaviour {
     /// <summary>
     /// 全局静态音量变量（默认最大音）
     /// </summary>
-    public static EnumVolume GlVol=EnumVolume.MaxVolu;
+    public static EnumVolume GlVol=EnumVolume.MinVolu;
 
 
     /// <summary>

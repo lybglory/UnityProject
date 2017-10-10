@@ -49,7 +49,7 @@ public class ResultGUI : MonoBehaviour {
         //绘制红宝石贴图
         GUI.DrawTexture(new Rect(550, 300, 50, 50), TextureRedDiamond);
         if (_isSHowDiamondNumber) {
-            GUI.Label(new Rect(680, 300, 150, 50), _tempDiamondNumber.ToString());
+            GUI.Label(new Rect(680, 300, 150, 50), GlobalManager.DiamondNum.ToString());
         }
         IsTryAgain=GUI.Button(new Rect(TryAgainBtnHoriPosition-200,TryAgainBtnVeriticalPosition-150, TextureTryAgainBtn.width, TextureTryAgainBtn.height),"", ResultGUISkin.GetStyle("Btn_TryAgain"));
         IsCancel = GUI.Button(new Rect(CancelBtnHoriPosition + 200, CancelBtnVeriticalPosition - 150, TextureCancel.width, TextureCancel.height), "", ResultGUISkin.GetStyle("Btn_Cancel"));
@@ -76,6 +76,9 @@ public class ResultGUI : MonoBehaviour {
     void Update()
     {   //一旦获取到istryAgain为true
         if (IsTryAgain) {
+            //统计清空置零
+            GlobalManager.Shifting = 0;
+            GlobalManager.DiamondNum = 0;
             SceneManager.LoadSceneAsync("2_LevelOne");
         }
         //退出游戏
@@ -117,7 +120,7 @@ public class ResultGUI : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         while (true) {
             //一旦累加的红宝石数量等于全局红宝石数量。就停止协程
-            if (_tempDiamondNumber>=GlobalManager.DiamondNum-1) {
+            if (_tempDiamondNumber>=GlobalManager.DiamondNum) {
                 StopCoroutine("ShowDiamondsNumber");
             }
             ++_tempDiamondNumber;
