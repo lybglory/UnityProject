@@ -29,14 +29,19 @@ public class Ctrl_Player : MonoBehaviour {
         } else if (GlobalManager.GlGameState== EnumGameState.Playing) {
             plAnimation.Play("Run");
             this.transform.Translate(Vector3.forward * runSpeed, Space.Self);//以第一人视角跑动
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.S))
             {
                 this.transform.Translate(Vector3.down * runSpeed, Space.Self);
             }
-            else if (Input.GetKey(KeyCode.D))
+            else if (Input.GetKey(KeyCode.W))
             {
                 this.transform.Translate(Vector3.up * runSpeed, Space.Self);
+            } else if (Input.GetKey(KeyCode.A)) {
+                this.transform.Translate(Vector3.left * runSpeed, Space.Self);
+            } else if (Input.GetKey(KeyCode.D)) {
+                this.transform.Translate(Vector3.right * runSpeed, Space.Self);
             }
+
             if (this.transform.position.z > 93)
             {
                 this.transform.position = startPoint;

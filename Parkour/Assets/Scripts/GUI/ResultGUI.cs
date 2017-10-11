@@ -94,7 +94,7 @@ public class ResultGUI : MonoBehaviour {
     /// <returns></returns>
     IEnumerator ShowShifting()
     {   //先等待5s
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         while (true) {
             
             if (_tempShifting >=GlobalManager.Shifting-1)
@@ -105,10 +105,10 @@ public class ResultGUI : MonoBehaviour {
             ++_tempShifting;
             _isSHowShifting = true;
             //显示0.3f
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.1f);
             //显示之后，等待0.2f
             _isSHowShifting = false;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -117,7 +117,7 @@ public class ResultGUI : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     IEnumerator ShowDiamondsNumber() {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         while (true) {
             //一旦累加的红宝石数量等于全局红宝石数量。就停止协程
             if (_tempDiamondNumber>=GlobalManager.DiamondNum) {

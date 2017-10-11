@@ -13,10 +13,39 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelOne_Manager : MonoBehaviour {
-    private AudioSource aduioLevelOne;      //持有音频组件
-    private string strGameOverScene;        //结算场景名称
-    public GameObject ObjPrefaOriginal;     //预制体原型
-    public GameObject ObjGetCreateOriginal;//得到动态创建的游戏对象
+    /// <summary>
+    /// 持有音频组件
+    /// </summary>
+    private AudioSource aduioLevelOne;      
+    /// <summary>
+    /// 结算场景名称
+    /// </summary>
+    private string strGameOverScene;        
+    /// <summary>
+    /// 预制体原型
+    /// </summary>
+    public GameObject ObjPrefaOriginal;     
+    /// <summary>
+    /// 得到动态创建道具的游戏对象
+    /// </summary>
+    public GameObject ObjGetCreateOriginal;
+    /// <summary>
+    /// 参考X坐标最小值
+    /// </summary>
+    public GameObject ObjLef;
+    /// <summary>
+    /// 参考X坐标最大值
+    /// </summary>
+    public GameObject ObjRight;
+
+    /// <summary>
+    /// 参考Z坐标最小值
+    /// </summary>
+    public GameObject ObjMinZ;
+    /// <summary>
+    /// 参考Z坐标最大值
+    /// </summary>
+    public GameObject ObjMaxZ;
 
     private void Awake()
     {
@@ -28,9 +57,9 @@ public class LevelOne_Manager : MonoBehaviour {
         GlobalManager.GlGameState = EnumGameState.Ready;
         //执行协程，统计里程
         StartCoroutine("GameStateCheck");
-        //动态生成道具
-        InvokeRepeating("",1f,1f);
-
+        //动态生成道具1秒钟生成一次
+        InvokeRepeating("DynamicCreateAllPrefabs", 1f,1f);
+        Debug.Log("ObjLeft的Y轴坐标"+ObjLef.transform.position.y);
         aduioLevelOne = GameObject.Find("_LevelOneAudioManager/LevelOneAudio").GetComponent<AudioSource>();
         aduioLevelOne.Play();
         aduioLevelOne.loop = true;              //开启循环播放
@@ -54,8 +83,8 @@ public class LevelOne_Manager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+    }
 
 
     /// <summary>
@@ -90,35 +119,49 @@ public class LevelOne_Manager : MonoBehaviour {
     /// <summary>
     /// 数据传值,动态生成道具
     /// </summary>
-    /// <param name="cloneOriginObj">原型预制体</param>
-    /// <param name="maxX">道具最大X坐标</param>
-    /// <param name="minX">道具最小X坐标</param>
-    /// <param name="y">道具固定y轴坐标</param>
-    /// <param name="maxZ">道具最大Z坐标</param>
-    /// <param name="minZ">道具最小Z坐标</param>
-    /// <param name="cloneNum">克隆道具预设的数量</param>
-    /// <param name="destoryTime">道具销毁的时间</param>
-    private void SendMessgObj(GameObject cloneOriginObj,int maxX,int minX,int y,int maxZ,int minZ, int cloneNum,int destoryTime) {
-        /*  8个参数：
+    /// <param name="cloneOriginObj">预设原型</param>
+    /// <param name="cloneNum">克隆的数量</param>
+    /// <param name="destoryTime">销毁时间</param>
+    private void SendMessgObj(GameObject cloneOriginObj,int cloneNum,int destoryTime) {
+        /*  确定8个参数：
             原型
             红宝石x坐标最小值，最大值，
             y坐标(定值)
-            z坐标min、max。
+            z坐标min、max。(就是以玩家为参考的坐标)
             红宝石数量
             销毁时间
          */
         System.Object[] ObjArray = new System.Object[8];
+        ObjArray[0] = cloneOriginObj;
+        ObjArray[1] = ObjLef.transform.position.x;
+        ObjArray[2] = ObjRight.transform.position.x;
+        ObjArray[3] = ObjLef.transform.position.y;
+        ObjArray[4] = ObjMinZ.transform.position.z;
+        ObjArray[5] = ObjMaxZ.transform.position.z;
+        ObjArray[6] = cloneNum;
+        ObjArray[7] = destoryTime;
 
         //发送数据
-        ObjGetCreateOriginal.SendMessage("",ObjArray,SendMessageOptions.DontRequireReceiver);
-
+        ObjGetCreateOriginal.SendMessage("CreateDiamondPrefab", ObjArray,SendMessageOptions.DontRequireReceiver);
     }
 
     /// <summary>
-    /// 留坑，动态创建
+    /// 创建道具，调用SendMessgObj方法
     /// </summary>
     private void DynamicCreateAllPrefabs() {
-
+        //根据里程来创建
+        if (GlobalManager.Shifting == 0) {
+            SendMessgObj(ObjPrefaOriginal, 10, 30);
+            
+        }
+        else if (GlobalManager.Shifting >= 14&& GlobalManager.Shifting<31)
+        {
+            SendMessgObj(ObjPrefaOriginal, 20, 30);
+            //Debug.Log("创建出来道具的z轴坐标：" + ObjPrefaOriginal.transform.position.z);
+        } else if (GlobalManager.Shifting == 40) {
+            SendMessgObj(ObjPrefaOriginal, 30, 40);
+            //Debug.Log("创建出来道具的z轴坐标：" + ObjPrefaOriginal.transform.position.z);
+        }
     }
     
 
