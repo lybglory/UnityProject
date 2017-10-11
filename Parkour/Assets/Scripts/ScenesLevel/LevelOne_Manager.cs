@@ -26,7 +26,7 @@ public class LevelOne_Manager : MonoBehaviour {
     /// </summary>
     public GameObject ObjPrefaOriginal;     
     /// <summary>
-    /// 得到动态创建道具的游戏对象
+    /// 得到动态创建道具的游戏对象.调用该对象挂载脚本的方法
     /// </summary>
     public GameObject ObjGetCreateOriginal;
     /// <summary>
@@ -128,7 +128,7 @@ public class LevelOne_Manager : MonoBehaviour {
             红宝石x坐标最小值，最大值，
             y坐标(定值)
             z坐标min、max。(就是以玩家为参考的坐标)
-            红宝石数量
+            克隆数量
             销毁时间
          */
         System.Object[] ObjArray = new System.Object[8];
