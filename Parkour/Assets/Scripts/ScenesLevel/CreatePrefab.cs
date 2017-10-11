@@ -13,7 +13,7 @@ public class CreatePrefab : MonoBehaviour {
             红宝石x坐标最小值，最大值，
             y坐标(定值)
             z坐标min、max。
-            红宝石数量
+            克隆数量
             销毁时间
          */
         GameObject originObj=null;
@@ -22,7 +22,7 @@ public class CreatePrefab : MonoBehaviour {
         float y = 0;
         float minZ = 0;
         float maxZ = 0;
-        int diamondNum = 0;
+        int cloneNum = 0;
         float destroyTime = 0;
         if (objs!=null) {
             if (objs.Length==8) {
@@ -32,7 +32,7 @@ public class CreatePrefab : MonoBehaviour {
                 y = System.Convert.ToSingle(objs[3]);
                 minZ = System.Convert.ToSingle(objs[4]); ;
                 maxZ = System.Convert.ToSingle(objs[5]); ;
-                diamondNum = System.Convert.ToInt32(objs[6]);
+                cloneNum = System.Convert.ToInt32(objs[6]);
                 destroyTime = System.Convert.ToSingle(objs[7]);
 
             }

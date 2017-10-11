@@ -98,15 +98,15 @@ public class ResultGUI : MonoBehaviour {
         while (true) {
             
             if (_tempShifting >=GlobalManager.Shifting-1)
-            {
+            {   //临时里程数大于实际里程数，停止协程
                 StopCoroutine("ShowShifting");
                 Debug.Log("结算界面:"+ GlobalManager.Shifting);
             }
             ++_tempShifting;
             _isSHowShifting = true;
-            //显示0.3f
+            //显示0.1f
             yield return new WaitForSeconds(0.1f);
-            //显示之后，等待0.2f
+            //显示之后，等待0.1f
             _isSHowShifting = false;
             yield return new WaitForSeconds(0.1f);
         }
@@ -119,7 +119,7 @@ public class ResultGUI : MonoBehaviour {
     IEnumerator ShowDiamondsNumber() {
         yield return new WaitForSeconds(0.3f);
         while (true) {
-            //一旦累加的红宝石数量等于全局红宝石数量。就停止协程
+            //一旦累加的红宝石数量大于或等于全局红宝石数量。就停止协程。这样实现了跳动效果
             if (_tempDiamondNumber>=GlobalManager.DiamondNum) {
                 StopCoroutine("ShowDiamondsNumber");
             }
@@ -128,7 +128,7 @@ public class ResultGUI : MonoBehaviour {
             yield return new WaitForSeconds(0.2f);
             _isSHowDiamondNumber = false;
             yield return new WaitForSeconds(0.2f);   
-        }
+        }//while_end
         
     }
 
