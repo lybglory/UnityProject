@@ -15,9 +15,21 @@ using UnityEngine;
 /// 音量枚举。
 /// </summary>
 public enum EnumVolume {
+    /// <summary>
+    /// 音量枚举静音
+    /// </summary>
     None,
+    /// <summary>
+    /// 音量枚举：最小音量
+    /// </summary>
     MinVolu,
+    /// <summary>
+    /// 音量枚举：正常音量
+    /// </summary>
     NormalVolu,
+    /// <summary>
+    /// 音量枚举：最大音量
+    /// </summary>
     MaxVolu
 }
 
@@ -33,6 +45,37 @@ public enum EnumGameState {
 }
 
 /// <summary>
+/// 动画枚举
+/// </summary>
+public enum EnumPlayerAnima
+{   /// <summary>
+    /// 无
+    /// </summary>
+    None,
+    /// <summary>
+    /// 动画枚举：走
+    /// </summary>
+    Walking,
+    /// <summary>
+    /// 动画枚举：跑动
+    /// </summary>
+    Runing,
+    /// <summary>
+    /// 动画枚举：跳跃
+    /// </summary>
+    Jumping,
+    /// <summary>
+    /// 动画枚举：俯冲
+    /// </summary>
+    Subduction,
+    /// <summary>
+    /// 落下
+    /// </summary>
+    Falling
+
+}
+
+/// <summary>
 /// 全局参数管理类
 /// </summary>
 public class GlobalManager : MonoBehaviour {
@@ -41,7 +84,7 @@ public class GlobalManager : MonoBehaviour {
     /// <summary>
     /// 全局静态音量变量（默认最大音）
     /// </summary>
-    public static EnumVolume GlVol=EnumVolume.NormalVolu;
+    public static EnumVolume GlVol=EnumVolume.MinVolu;
 
 
     /// <summary>
@@ -80,5 +123,9 @@ public class GlobalManager : MonoBehaviour {
     /// 全局里程
     /// </summary>
     public static int Shifting = 0;
+    /// <summary>
+    /// 默认动画
+    /// </summary>
+    public static EnumPlayerAnima EnumPlAction = EnumPlayerAnima.None;
 
 }
