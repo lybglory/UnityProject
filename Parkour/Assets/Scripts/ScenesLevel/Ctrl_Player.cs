@@ -148,4 +148,13 @@ public class Ctrl_Player : MonoBehaviour {
             }
         }
     }//动画协程_end
+
+    /// <summary>
+    /// 切换相机的方法
+    /// </summary>
+    /// <param name="strCameraTag">相机Tag标签</param>
+    /// <param name="StrCameraName">相机名称</param>
+    private void ChangeCamera(string strCameraTag,string StrCameraName) {
+        GameObject[] ObjCameras = GameObject.FindGameObjectsWithTag(strCameraTag);
+    }
 }
