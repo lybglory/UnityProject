@@ -27,7 +27,10 @@ public class Ctrl_Player : MonoBehaviour {
     /// <summary>
     /// 持有Animation组件
     /// </summary>
-    private Animation plAnimation;          
+    private Animation plAnimation; 
+    /// <summary>
+    /// 起始位置
+    /// </summary>
     private Vector3 startPoint;
     /// <summary>
     /// 行走动画剪辑
@@ -49,8 +52,23 @@ public class Ctrl_Player : MonoBehaviour {
     /// 跌落动画剪辑
     /// </summary>
     public AnimationClip PlFallingClip;
+    /// <summary>
+    /// 最远的位置
+    /// </summary>
+    private float flMaxPoint = 93;
+    /// <summary>
+    /// 相机Tag名称
+    /// </summary>
+    private string _strCameraTag = "Cameras";
+    /// <summary>
+    /// 主相机名称
+    /// </summary>
+    private string strMainCameraName = "MainCamera";
+    /// <summary>
+    /// 远相机名称
+    /// </summary>
+    private string strLongCameraName = "LongCamera";
 
-    // Use this for initialization
     void Start () {
         plAnimation=this.gameObject.GetComponent<Animation>();
         startPoint = this.gameObject.transform.position;
@@ -62,32 +80,27 @@ public class Ctrl_Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //根据游戏状态，判定玩家是否奔跑。当倒计时结束后玩家才开始奔跑
-        if (GlobalManager.GlGameState != EnumGameState.Playing) {
+        if (GlobalManager.GlGameState != EnumGameState.Playing)
+        {
             plAnimation.Play("Walking");
-        } else if (GlobalManager.GlGameState== EnumGameState.Playing) {
-            //plAnimation.Play("Run");
-            this.transform.Translate(Vector3.forward * flRunSpeed, Space.Self);//以第一人视角跑动
-            //if (Input.GetKey(KeyCode.S))
-            //{
-            //    this.transform.Translate(Vector3.down * runSpeed, Space.Self);
-            //}
-            //else if (Input.GetKey(KeyCode.W))
-            //{
-            //    this.transform.Translate(Vector3.up * runSpeed, Space.Self);
-            //} else if (Input.GetKey(KeyCode.A)) {
-            //    this.transform.Translate(Vector3.left * runSpeed, Space.Self);
-            //} else if (Input.GetKey(KeyCode.D)) {
-            //    this.transform.Translate(Vector3.right * runSpeed, Space.Self);
-            //}
-
-            if (this.transform.position.z > 93)
-            {
-                this.transform.position = startPoint;
-            }
         }
+        else if (GlobalManager.GlGameState == EnumGameState.Playing)
+        {   //以第一人视角跑动
+            this.transform.Translate(Vector3.forward * flRunSpeed, Space.Self);
+        }
+        //回到起点位置
+        if (this.transform.position.z > flMaxPoint){
+            this.transform.position = startPoint;
+        }
+        InputChangeCamera();
+   
         
     }//Update()_end
 
+    /// <summary>
+    /// 协程按键监听
+    /// </summary>
+    /// <returns></returns>
     IEnumerator IEInputMonitoring()
     {
         //yield return new WaitForSeconds(0.1f);
@@ -118,6 +131,10 @@ public class Ctrl_Player : MonoBehaviour {
         }//while_end
     }//协程_end
 
+    /// <summary>
+    /// 协程，控制动画剪辑的播放
+    /// </summary>
+    /// <returns></returns>
     IEnumerator IEPlayAnimationClip (){
         //yield return new WaitForSeconds(0.1f);
         while (true) {
@@ -150,11 +167,27 @@ public class Ctrl_Player : MonoBehaviour {
     }//动画协程_end
 
     /// <summary>
+    /// 获得按键输入，切换相机
+    /// </summary>
+    private void InputChangeCamera() {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            ChangeCamera(_strCameraTag, strMainCameraName);
+        } else if(Input.GetKeyDown(KeyCode.Alpha2)){
+            ChangeCamera(_strCameraTag, strLongCameraName);
+        }
+    }
+
+    /// <summary>
     /// 切换相机的方法
     /// </summary>
     /// <param name="strCameraTag">相机Tag标签</param>
-    /// <param name="StrCameraName">相机名称</param>
-    private void ChangeCamera(string strCameraTag,string StrCameraName) {
+    /// <param name="strCameraName">需要启用的相机名称</param>
+    private void ChangeCamera(string strCameraTag,string strCameraName) {
         GameObject[] ObjCameras = GameObject.FindGameObjectsWithTag(strCameraTag);
+        for (int i = 0; i < ObjCameras.Length; i++)
+        {   //禁用所有相机对象上的Camera组件
+            ObjCameras[i].GetComponent<Camera>().enabled = false;
+        }
+        GameObject.Find(strCameraName).GetComponent<Camera>().enabled = true;
     }
 }
