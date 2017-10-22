@@ -68,6 +68,10 @@ public class Ctrl_Player : MonoBehaviour {
     /// 远相机名称
     /// </summary>
     private string strLongCameraName = "LongCamera";
+    /// <summary>
+    /// 透视相机名称
+    /// </summary>
+    private string strPerspactiveCameraName = "PerspactiveCamera";
 
     void Start () {
         plAnimation=this.gameObject.GetComponent<Animation>();
@@ -172,8 +176,12 @@ public class Ctrl_Player : MonoBehaviour {
     private void InputChangeCamera() {
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             ChangeCamera(_strCameraTag, strMainCameraName);
-        } else if(Input.GetKeyDown(KeyCode.Alpha2)){
+        } else if (Input.GetKeyDown(KeyCode.Alpha2)) {
             ChangeCamera(_strCameraTag, strLongCameraName);
+        } else if (Input.GetKeyDown(KeyCode.Alpha3)) {
+            ChangeCamera(_strCameraTag, strMainCameraName);
+            //开启透视相机【只照射dangerlayer层】
+            GameObject.Find(strPerspactiveCameraName).GetComponent<Camera>().enabled = true;
         }
     }
 
