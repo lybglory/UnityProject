@@ -23,7 +23,7 @@ public class ThornUpDownMoving : MonoBehaviour {
 	void Update () {
         if (this.transform.position.y > -4.7f) {
             _flag = -1;//乘以负数：下降
-        } else if (this.transform.position.y <-6.2f) {
+        } else if (this.transform.position.y <-7.5f) {
             _flag = 1;//乘以正数:上升
         }
         this.transform.Translate(Vector3.up*_flag * _moveSpeed,Space.World);

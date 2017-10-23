@@ -126,10 +126,16 @@ public class Ctrl_Player : MonoBehaviour {
                 else if (Input.GetKeyDown(KeyCode.Space))
                 {
                     //跳跃
-                    this.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up* flJumpSpeed, ForceMode.Impulse);
+                    this.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * flJumpSpeed, ForceMode.Impulse);
                     GlobalManager.EnumPlAction = EnumPlayerAnima.Jumping;
                     yield return new WaitForSeconds(PlJumpingClip.length);
+                    GlobalManager.EnumPlAction = EnumPlayerAnima.Runing;
 
+                } else if (Input.GetKeyDown(KeyCode.S)) {
+                    //Subduction俯冲
+                    GlobalManager.EnumPlAction = EnumPlayerAnima.Subduction;
+                    yield return new WaitForSeconds(PlSubductionClip.length);
+                    GlobalManager.EnumPlAction = EnumPlayerAnima.Runing;
                 }
             }//最外层if_end
         }//while_end
@@ -160,6 +166,8 @@ public class Ctrl_Player : MonoBehaviour {
                         yield return new WaitForSeconds(PlJumpingClip.length);
                         break;
                     case EnumPlayerAnima.Subduction:
+                        plAnimation.Play(PlSubductionClip.name);
+                        yield return new WaitForSeconds(PlSubductionClip.length);
                         break;
                     case EnumPlayerAnima.Falling:
                         break;
