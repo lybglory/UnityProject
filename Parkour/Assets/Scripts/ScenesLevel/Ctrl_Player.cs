@@ -105,33 +105,23 @@ public class Ctrl_Player : MonoBehaviour {
     /// 协程按键监听
     /// </summary>
     /// <returns></returns>
-    IEnumerator IEInputMonitoring()
-    {
-        //yield return new WaitForSeconds(0.1f);
-        while (true)
-        {
+    IEnumerator IEInputMonitoring(){
+        while (true){
             yield return new WaitForSeconds(0.01f);
-            if (GlobalManager.GlGameState == EnumGameState.Playing)
-            {
+            if (GlobalManager.GlGameState == EnumGameState.Playing){
                 GlobalManager.EnumPlAction = EnumPlayerAnima.Runing;
-                if (Input.GetKey(KeyCode.A))
-                {
+                if (Input.GetKey(KeyCode.A)){
 
                     this.transform.Rotate(Vector3.down * flRotateSpeed);
-                }
-                else if (Input.GetKey(KeyCode.D))
-                {
+                }else if (Input.GetKey(KeyCode.D)){
                     this.transform.Rotate(Vector3.up * flRotateSpeed);
-                }
-                else if (Input.GetKeyDown(KeyCode.Space))
-                {
+                }else if (Input.GetKeyDown(KeyCode.Space)){
                     //跳跃
                     this.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * flJumpSpeed, ForceMode.Impulse);
                     GlobalManager.EnumPlAction = EnumPlayerAnima.Jumping;
                     yield return new WaitForSeconds(PlJumpingClip.length);
                     GlobalManager.EnumPlAction = EnumPlayerAnima.Runing;
-
-                } else if (Input.GetKeyDown(KeyCode.S)) {
+                }else if (Input.GetKeyDown(KeyCode.S)) {
                     //Subduction俯冲
                     GlobalManager.EnumPlAction = EnumPlayerAnima.Subduction;
                     yield return new WaitForSeconds(PlSubductionClip.length);
