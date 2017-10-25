@@ -20,6 +20,7 @@ public class CheckCollision : MonoBehaviour {
     private void OnCollisionEnter(Collision collision)
     {   //一旦障碍物碰到英雄，游戏结束
         if (collision.gameObject.name.Equals(plName)) {
+            GlobalManager.EnumPlAction = EnumPlayerAnima.Falling;
             GlobalManager.GlGameState = EnumGameState.End;
         }
     }
