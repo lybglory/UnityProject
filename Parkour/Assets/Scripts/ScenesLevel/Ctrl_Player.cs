@@ -92,7 +92,8 @@ public class Ctrl_Player : MonoBehaviour {
         {
             plAnimation.Play(PlStandingClip.name);
         }
-        else if (GlobalManager.GlGameState == EnumGameState.Playing)
+        //修复逻辑出错的bug，此处不应写在同一个判断（if-else）,应该单独判断，否则游戏结束状态，不能播放跌倒动画
+        if (GlobalManager.GlGameState == EnumGameState.Playing)
         {   //以第一人视角跑动
             this.transform.Translate(Vector3.forward * flRunSpeed, Space.Self);
         }
