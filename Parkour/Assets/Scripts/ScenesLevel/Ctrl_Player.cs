@@ -76,6 +76,10 @@ public class Ctrl_Player : MonoBehaviour {
     /// 透视相机名称
     /// </summary>
     private string strPerspactiveCameraName = "PerspactiveCamera";
+    /// <summary>
+    /// 标志位，控制跌倒动画只播放一次
+    /// </summary>
+    private bool isOn = true;
 
     void Start () {
         plAnimation=this.gameObject.GetComponent<Animation>();
@@ -167,8 +171,12 @@ public class Ctrl_Player : MonoBehaviour {
                     yield return new WaitForSeconds(PlSubductionClip.length);
                     break;
                 case EnumPlayerAnima.Falling:
-                    plAnimation.Play(PlFallingClip.name);
-                    yield return new WaitForSeconds(PlFallingClip.length);
+                    if (isOn)
+                    {   //保证只播放一次
+                        isOn = false;
+                        plAnimation.Play(PlFallingClip.name);
+                        yield return new WaitForSeconds(PlFallingClip.length);
+                    }
                     break;
                 default:
                     break;
