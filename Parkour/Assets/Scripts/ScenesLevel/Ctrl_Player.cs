@@ -33,6 +33,10 @@ public class Ctrl_Player : MonoBehaviour {
     /// </summary>
     private Vector3 startPoint;
     /// <summary>
+    /// 站立动画剪辑
+    /// </summary>
+    public AnimationClip PlStandingClip;
+    /// <summary>
     /// 行走动画剪辑
     /// </summary>
     public AnimationClip PlWalkingiClip;
@@ -84,9 +88,9 @@ public class Ctrl_Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //根据游戏状态，判定玩家是否奔跑。当倒计时结束后玩家才开始奔跑
-        if (GlobalManager.GlGameState != EnumGameState.Playing)
+        if (GlobalManager.GlGameState == EnumGameState.Ready)
         {
-            plAnimation.Play("Walking");
+            plAnimation.Play(PlStandingClip.name);
         }
         else if (GlobalManager.GlGameState == EnumGameState.Playing)
         {   //以第一人视角跑动
@@ -139,32 +143,35 @@ public class Ctrl_Player : MonoBehaviour {
         //yield return new WaitForSeconds(0.1f);
         while (true) {
             yield return new WaitForSeconds(0.01f);
-            if (GlobalManager.GlGameState==EnumGameState.Playing) {
-                switch (GlobalManager.EnumPlAction)
-                {
-                    case EnumPlayerAnima.None:
-                        break;
-                    case EnumPlayerAnima.Walking:
-                        //plAnimation.Play(PlWalkingiClip.name);
-                        break;
-                    case EnumPlayerAnima.Runing:
-                        plAnimation.Play(PlRuningClip.name);
-                        yield return new WaitForSeconds(PlRuningClip.length);
-                        break;
-                    case EnumPlayerAnima.Jumping:
-                        plAnimation.Play(PlJumpingClip.name);
-                        yield return new WaitForSeconds(PlJumpingClip.length);
-                        break;
-                    case EnumPlayerAnima.Subduction:
-                        plAnimation.Play(PlSubductionClip.name);
-                        yield return new WaitForSeconds(PlSubductionClip.length);
-                        break;
-                    case EnumPlayerAnima.Falling:
-                        break;
-                    default:
-                        break;
-                }
-            }
+            switch (GlobalManager.EnumPlAction)
+            {
+                case EnumPlayerAnima.None:
+                    plAnimation.Play(PlStandingClip.name);
+                    yield return new WaitForSeconds(PlStandingClip.length);
+                    break;
+                case EnumPlayerAnima.Walking:
+                    plAnimation.Play(PlWalkingiClip.name);
+                    yield return new WaitForSeconds(PlWalkingiClip.length);
+                    break;
+                case EnumPlayerAnima.Runing:
+                    plAnimation.Play(PlRuningClip.name);
+                    yield return new WaitForSeconds(PlRuningClip.length);
+                    break;
+                case EnumPlayerAnima.Jumping:
+                    plAnimation.Play(PlJumpingClip.name);
+                    yield return new WaitForSeconds(PlJumpingClip.length);
+                    break;
+                case EnumPlayerAnima.Subduction:
+                    plAnimation.Play(PlSubductionClip.name);
+                    yield return new WaitForSeconds(PlSubductionClip.length);
+                    break;
+                case EnumPlayerAnima.Falling:
+                    plAnimation.Play(PlFallingClip.name);
+                    yield return new WaitForSeconds(PlFallingClip.length);
+                    break;
+                default:
+                    break;
+            }//switch_end
         }
     }//动画协程_end
 
