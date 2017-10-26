@@ -7,24 +7,14 @@ public class DynamicAddScripts : MonoBehaviour {
     /// 目标游戏道具对象
     /// </summary>
     public GameObject ObjNeed;
-    /// <summary>
-    /// AudioSource组件数组
-    /// </summary>
-    private AudioSource[] arrayAduios;
 
-    private void Start()
-    {   //数组第一个元素是吃红宝石特效声音
-        //第二个元素倒刺声音特效
-        arrayAduios = GameObject.Find("_LevelOneAudioManager/EffectAudio").GetComponents<AudioSource>();
-    }
     private void OnTriggerEnter(Collider other)
     {
-        if (ObjNeed!=null) {
-            //倒刺音量特效只播放一次
-            arrayAduios[1].loop = false;
-            arrayAduios[1].volume = 3;
-            arrayAduios[1].Play();
+        if (ObjNeed != null)
+        {
+            //第一次碰撞之后禁用，避免每次碰撞都会加载此类导致播放音效
             ObjNeed.AddComponent<ThornStandMoving>();
+            this.gameObject.SetActive(false);
         }
     }
 }
