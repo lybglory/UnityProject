@@ -59,7 +59,7 @@ public class Ctrl_Player : MonoBehaviour {
     /// <summary>
     /// 最远的位置
     /// </summary>
-    private float flMaxPoint = 93;
+    private float flMaxPoint = 130;
     /// <summary>
     /// 相机Tag名称
     /// </summary>

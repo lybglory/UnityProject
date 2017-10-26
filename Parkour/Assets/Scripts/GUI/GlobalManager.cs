@@ -72,15 +72,12 @@ public enum EnumPlayerAnima
     /// 落下
     /// </summary>
     Falling
-
 }
 
 /// <summary>
 /// 全局参数管理类
 /// </summary>
 public class GlobalManager : MonoBehaviour {
-    //public static 
-
     /// <summary>
     /// 全局静态音量变量（默认最大音）
     /// </summary>
@@ -127,5 +124,10 @@ public class GlobalManager : MonoBehaviour {
     /// 默认动画
     /// </summary>
     public static EnumPlayerAnima EnumPlAction = EnumPlayerAnima.None;
+
+    /// <summary>
+    /// 常量，起始位置
+    /// </summary>
+    public const float ORIGINALPOINT = -120;
 
 }
