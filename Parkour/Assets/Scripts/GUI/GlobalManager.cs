@@ -128,6 +128,6 @@ public class GlobalManager : MonoBehaviour {
     /// <summary>
     /// 常量，起始位置
     /// </summary>
-    public const float ORIGINALPOINT = -120;
+    public static float ORIGINALPOINT =0;
 
 }

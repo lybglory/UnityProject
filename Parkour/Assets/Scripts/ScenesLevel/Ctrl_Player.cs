@@ -59,7 +59,7 @@ public class Ctrl_Player : MonoBehaviour {
     /// <summary>
     /// 最远的位置
     /// </summary>
-    private float flMaxPoint = 130;
+    private float flMaxPoint=0;
     /// <summary>
     /// 相机Tag名称
     /// </summary>
@@ -80,10 +80,17 @@ public class Ctrl_Player : MonoBehaviour {
     /// 标志位，控制跌倒动画只播放一次
     /// </summary>
     private bool isOn = true;
+    /// <summary>
+    /// 最远参照物
+    /// </summary>
+    private GameObject Objreference;
 
     void Start () {
-        plAnimation=this.gameObject.GetComponent<Animation>();
+        Objreference=GameObject.Find("Environment/BridgeSourth/ObjReference/ObjMaxZ");
+        flMaxPoint = Objreference.transform.position.z;
+        plAnimation =this.gameObject.GetComponent<Animation>();
         startPoint = this.gameObject.transform.position;
+        GlobalManager.ORIGINALPOINT = startPoint.z;
         //执行协程
         StartCoroutine("IEInputMonitoring");
         StartCoroutine("IEPlayAnimationClip");
@@ -102,9 +109,9 @@ public class Ctrl_Player : MonoBehaviour {
             this.transform.Translate(Vector3.forward * flRunSpeed, Space.Self);
         }
         //回到起点位置
-        if (this.transform.position.z > flMaxPoint){
-            this.transform.position = startPoint;
-        }
+        //if (this.transform.position.z > flMaxPoint){
+        //    this.transform.position = startPoint;
+        //}
         InputChangeCamera();
    
         
