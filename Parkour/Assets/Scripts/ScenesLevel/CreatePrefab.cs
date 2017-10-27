@@ -37,12 +37,18 @@ public class CreatePrefab : MonoBehaviour {
 
             }
         }
-        GameObject cloneObj = (GameObject)Instantiate(originObj);
-        cloneObj.transform.position = new Vector3(GetRandomValue(minX,maxX), y, GetRandomValue(minZ,maxZ));
-        Debug.Log("minZ=" + minZ +";maxZ="+ maxZ + ";创建出来道具的z轴坐标：" + cloneObj.transform.position.z);
+        //克隆指定的游戏对象
+        for (int i = 0; i < cloneNum; i++)
+        {
+            GameObject cloneObj = (GameObject)Instantiate(originObj);
+            cloneObj.transform.position = new Vector3(GetRandomValue(minX, maxX), y, GetRandomValue(minZ, maxZ));
+            Debug.Log("minZ=" + minZ + ";maxZ=" + maxZ + ";创建出来道具的z轴坐标：" + cloneObj.transform.position.z);
+            //销毁时间
+            Destroy(cloneObj, destroyTime);
+        }
+        
 
-        //销毁时间
-        Destroy(cloneObj, destroyTime);
+        
     }
 
     /// <summary>
