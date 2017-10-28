@@ -29,23 +29,17 @@ public class LevelOne_Manager : MonoBehaviour {
     /// 得到动态创建道具的游戏对象.调用该对象挂载脚本的方法
     /// </summary>
     public GameObject ObjGetCreateOriginal;
+    
     /// <summary>
-    /// 参考X坐标最小值
+    /// 南桥参考对象数组
     /// </summary>
-    public GameObject ObjLef;
+    public GameObject[] ObjSourthReference;
     /// <summary>
-    /// 参考X坐标最大值
+    /// 北桥参考对象数组
     /// </summary>
-    public GameObject ObjRight;
+    public GameObject[] ObjNorthReference;
 
-    /// <summary>
-    /// 参考Z坐标最小值
-    /// </summary>
-    public GameObject ObjMinZ;
-    /// <summary>
-    /// 参考Z坐标最大值
-    /// </summary>
-    public GameObject ObjMaxZ;
+
 
     private void Awake()
     {
@@ -58,8 +52,8 @@ public class LevelOne_Manager : MonoBehaviour {
         //执行协程，统计里程
         StartCoroutine("GameStateCheck");
         //动态生成道具1秒钟生成一次
-        InvokeRepeating("DynamicCreateAllPrefabs", 1f,1f);
-        Debug.Log("ObjLeft的Y轴坐标"+ObjLef.transform.position.y);
+        InvokeRepeating("DynamicCreateSourthAllPrefabs", 3f,10f);
+        Debug.Log("ObjLeft的Y轴坐标"+ ObjSourthReference[0].transform.position.y);
         aduioLevelOne = GameObject.Find("_LevelOneAudioManager/LevelOneAudio").GetComponent<AudioSource>();
         aduioLevelOne.Play();
         aduioLevelOne.loop = true;              //开启循环播放
@@ -101,7 +95,8 @@ public class LevelOne_Manager : MonoBehaviour {
             yield return new WaitForSeconds(1f);
             if (GlobalManager.GlGameState==EnumGameState.Playing) {
                 //全局里程
-                ++GlobalManager.Shifting;
+
+                //++GlobalManager.Shifting;
             }
             
 
@@ -117,27 +112,41 @@ public class LevelOne_Manager : MonoBehaviour {
     }
 
     /// <summary>
-    /// 数据传值,动态生成道具
+    /// 动态生成道具的方法
     /// </summary>
-    /// <param name="cloneOriginObj">预设原型</param>
-    /// <param name="cloneNum">克隆的数量</param>
+    /// <param name="cloneOriginObj">克隆对象的原型</param>
+    /// <param name="cloneNum">克隆数量</param>
     /// <param name="destoryTime">销毁时间</param>
-    private void SendMessgObj(GameObject cloneOriginObj,int cloneNum,int destoryTime) {
-        /*  确定8个参数：
+    /// <param name="ObjReference">传入参考对象数组</param>
+    private void SendMessgObj(GameObject cloneOriginObj,int cloneNum,int destoryTime,GameObject[] ObjReference) {
+        /*  确定9个参数：
             原型
             红宝石x坐标最小值，最大值，
             y坐标(定值)
             z坐标min、max。(就是以玩家为参考的坐标)
             克隆数量
             销毁时间
+            南桥还是北桥
          */
-        System.Object[] ObjArray = new System.Object[8];
+        System.Object[] ObjArray = new System.Object[9];
         ObjArray[0] = cloneOriginObj;
-        ObjArray[1] = ObjLef.transform.position.x;
-        ObjArray[2] = ObjRight.transform.position.x;
-        ObjArray[3] = ObjLef.transform.position.y;
-        ObjArray[4] = ObjMinZ.transform.position.z;
-        ObjArray[5] = ObjMaxZ.transform.position.z;
+        ObjArray[3] = ObjReference[0].transform.position.y;
+        //如果南桥参考对象
+        if (ObjReference == ObjSourthReference) {
+            ObjArray[1] = ObjReference[0].transform.position.x;
+            ObjArray[2] = ObjReference[1].transform.position.x;
+            ObjArray[4] = ObjReference[2].transform.position.z;
+            ObjArray[5] = ObjReference[3].transform.position.z;
+            ObjArray[8] = true;
+        } else if (ObjReference == ObjNorthReference) {
+            //北桥参考对象
+            ObjArray[1] = ObjReference[0].transform.position.z;
+            ObjArray[2] = ObjReference[1].transform.position.z;
+            ObjArray[4] = ObjReference[2].transform.position.x;
+            ObjArray[5] = ObjReference[3].transform.position.x;
+            ObjArray[8] = false;
+        }
+        
         ObjArray[6] = cloneNum;
         ObjArray[7] = destoryTime;
 
@@ -146,23 +155,24 @@ public class LevelOne_Manager : MonoBehaviour {
     }
 
     /// <summary>
-    /// 创建道具，调用SendMessgObj方法
+    /// 创建南桥道具，调用SendMessgObj方法
     /// </summary>
-    private void DynamicCreateAllPrefabs() {
+    private void DynamicCreateSourthAllPrefabs() {
         //根据里程来创建
-        if (GlobalManager.Shifting == 0) {
-            SendMessgObj(ObjPrefaOriginal, 10, 30);
-            
-        }
-        else if (GlobalManager.Shifting >= 14&& GlobalManager.Shifting<31)
+        if (GlobalManager.Shifting == 0)
         {
-            SendMessgObj(ObjPrefaOriginal, 20, 30);
+            SendMessgObj(ObjPrefaOriginal, 2, 10, ObjSourthReference);
+
+        }
+        else if (GlobalManager.Shifting >= 40 && GlobalManager.Shifting < 192)
+        {
+            SendMessgObj(ObjPrefaOriginal, 5, 10, ObjSourthReference);
             //Debug.Log("创建出来道具的z轴坐标：" + ObjPrefaOriginal.transform.position.z);
-        } else if (GlobalManager.Shifting == 40) {
-            SendMessgObj(ObjPrefaOriginal, 30, 40);
-            //Debug.Log("创建出来道具的z轴坐标：" + ObjPrefaOriginal.transform.position.z);
+        }
+        //北桥道具
+        else if (GlobalManager.Shifting > 200&&GlobalManager.Shifting <390) {
+            SendMessgObj(ObjPrefaOriginal, 10, 10, ObjNorthReference);
         }
     }
-    
 
 }
