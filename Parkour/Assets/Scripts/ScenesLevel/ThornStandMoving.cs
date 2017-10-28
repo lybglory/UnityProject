@@ -8,6 +8,10 @@ public class ThornStandMoving : MonoBehaviour {
     /// AudioSource组件数组
     /// </summary>
     private AudioSource[] arrayAduios;
+    /// <summary>
+    /// 倒刺初始位置
+    /// </summary>
+    private Vector3 OrignThorn=new Vector3(0.5f,-4.07f,50);
     // Use this for initialization
     void Start () {
         //数组第一个元素是吃红宝石特效声音
@@ -23,8 +27,9 @@ public class ThornStandMoving : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         transform.Translate(Vector3.back * Time.deltaTime * flStandMovingSpeed, Space.World);
-        if (transform.position.z<=-90) {
-            transform.position = new Vector3(1,-4.07f,GlobalManager.ORIGINALPOINT);
+        if (transform.position.z<= GlobalManager.OriginPoint) {
+            transform.position = OrignThorn;
         }
 	}
+
 }

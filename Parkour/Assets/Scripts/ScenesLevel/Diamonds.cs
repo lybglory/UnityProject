@@ -13,24 +13,24 @@ using UnityEngine;
 public class Diamonds : MonoBehaviour {
 
     public float DiamondRotateSpeed = 1f;
-    private AudioSource audioEffect;
+    private AudioSource[] audioEffect;
     private void Start()
     {
-        audioEffect= GameObject.Find("_LevelOneAudioManager/EffectAudio").GetComponent<AudioSource>();
+        audioEffect= GameObject.Find("_LevelOneAudioManager/EffectAudio").GetComponents<AudioSource>();
         //根据开始场景保存下来的全局静态音量枚举设置音量大小
         switch (GlobalManager.GlVol)
         {
             case EnumVolume.MaxVolu:
-                audioEffect.volume = 1;
+                audioEffect[0].volume = 1;
                 break;
             case EnumVolume.NormalVolu:
-                audioEffect.volume = 0.5f;
+                audioEffect[0].volume = 0.5f;
                 break;
             case EnumVolume.MinVolu:
-                audioEffect.volume = 0;
+                audioEffect[0].volume = 0;
                 break;
             case EnumVolume.None:
-                audioEffect.volume = 0;
+                audioEffect[0].volume = 0;
                 break;
         }
 
@@ -56,7 +56,7 @@ public class Diamonds : MonoBehaviour {
         {
             ++GlobalManager.DiamondNum;
             //播放吃红宝石音效
-            audioEffect.Play();
+            audioEffect[0].Play();
             Debug.Log("吃到的红宝石数量" + GlobalManager.DiamondNum);
             Destroy(this.gameObject);
             
