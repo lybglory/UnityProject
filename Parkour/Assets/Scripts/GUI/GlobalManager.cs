@@ -81,7 +81,7 @@ public class GlobalManager : MonoBehaviour {
     /// <summary>
     /// 全局静态音量变量（默认最大音）
     /// </summary>
-    public static EnumVolume GlVol=EnumVolume.MinVolu;
+    public static EnumVolume GlVol=EnumVolume.NormalVolu;
 
 
     /// <summary>
@@ -126,8 +126,8 @@ public class GlobalManager : MonoBehaviour {
     public static EnumPlayerAnima EnumPlAction = EnumPlayerAnima.None;
 
     /// <summary>
-    /// 常量，起始位置
+    /// 起始位置
     /// </summary>
-    public static float ORIGINALPOINT =0;
+    public static float OriginPoint =0;
 
 }

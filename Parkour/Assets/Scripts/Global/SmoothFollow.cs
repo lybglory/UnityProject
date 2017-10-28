@@ -22,7 +22,7 @@ public class SmoothFollow : MonoBehaviour {
     [AddComponentMenu("Camera-Control/Smooth Follow")]
 
 
-void LateUpdate()
+    void LateUpdate()
     {
         // Early out if we don't have a target
         if (!Target)
@@ -30,10 +30,10 @@ void LateUpdate()
             return;
         }
 
-        // Calculate the current rotation angles
+        //存储目标欧拉角
         float wantedRotationAngle = Target.eulerAngles.y;
         float wantedHeight = Target.position.y + height;
-
+        //存储当前欧拉角
         float currentRotationAngle = transform.eulerAngles.y;
         float currentHeight = transform.position.y;
 

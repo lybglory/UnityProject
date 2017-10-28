@@ -73,9 +73,9 @@ public class LevelOneScenesGUI : MonoBehaviour {
     {
         GUI.skin = levelOnGUISkin;
         //左上角显示里程
-        GUI.Label(new Rect(0, 0, 150, 50), "里程：" + GlobalManager.Shifting.ToString());
-        GUI.DrawTexture(new Rect(150, 0, 50, 50), textureRedDiamond);
-        GUI.Label(new Rect(200,0,100,50),GlobalManager.DiamondNum.ToString());
+        GUI.Label(new Rect(0, 0, 200, 50), "里程：" + GlobalManager.Shifting.ToString());
+        GUI.DrawTexture(new Rect(200, 0, 50, 50), textureRedDiamond);
+        GUI.Label(new Rect(250,0,100,50),GlobalManager.DiamondNum.ToString());
 
 
         //由这个标志位控制是否需要显示倒计时
