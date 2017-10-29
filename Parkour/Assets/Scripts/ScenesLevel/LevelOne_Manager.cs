@@ -31,13 +31,21 @@ public class LevelOne_Manager : MonoBehaviour {
     public GameObject ObjGetCreateOriginal;
     
     /// <summary>
-    /// 南桥参考对象数组
+    /// 左桥参考对象数组
     /// </summary>
-    public GameObject[] ObjSourthReference;
+    public GameObject[] ObjLeftReference;
     /// <summary>
     /// 北桥参考对象数组
     /// </summary>
     public GameObject[] ObjNorthReference;
+    /// <summary>
+    /// 右桥参考对象数组
+    /// </summary>
+    public GameObject[] ObjRightReference;
+    /// <summary>
+    /// 南桥参考对象数组
+    /// </summary>
+    public GameObject[] ObjSourthReference;
 
 
 
@@ -52,8 +60,8 @@ public class LevelOne_Manager : MonoBehaviour {
         //执行协程，统计里程
         StartCoroutine("GameStateCheck");
         //动态生成道具1秒钟生成一次
-        InvokeRepeating("DynamicCreateSourthAllPrefabs", 3f,10f);
-        Debug.Log("ObjLeft的Y轴坐标"+ ObjSourthReference[0].transform.position.y);
+        InvokeRepeating("DynamicCreateAllPrefabs", 3f,10f);
+        //Debug.Log("ObjLeft的Y轴坐标"+ ObjLeftReference[0].transform.position.y);
         aduioLevelOne = GameObject.Find("_LevelOneAudioManager/LevelOneAudio").GetComponent<AudioSource>();
         aduioLevelOne.Play();
         aduioLevelOne.loop = true;              //开启循环播放
@@ -95,8 +103,7 @@ public class LevelOne_Manager : MonoBehaviour {
             yield return new WaitForSeconds(1f);
             if (GlobalManager.GlGameState==EnumGameState.Playing) {
                 //全局里程
-
-                //++GlobalManager.Shifting;
+                ++GlobalManager.Shifting;
             }
             
 
@@ -131,14 +138,14 @@ public class LevelOne_Manager : MonoBehaviour {
         System.Object[] ObjArray = new System.Object[9];
         ObjArray[0] = cloneOriginObj;
         ObjArray[3] = ObjReference[0].transform.position.y;
-        //如果南桥参考对象
-        if (ObjReference == ObjSourthReference) {
+        //如果左桥参考对象
+        if (ObjReference == ObjLeftReference|| ObjReference == ObjRightReference) {
             ObjArray[1] = ObjReference[0].transform.position.x;
             ObjArray[2] = ObjReference[1].transform.position.x;
             ObjArray[4] = ObjReference[2].transform.position.z;
             ObjArray[5] = ObjReference[3].transform.position.z;
             ObjArray[8] = true;
-        } else if (ObjReference == ObjNorthReference) {
+        } else if (ObjReference == ObjNorthReference|| ObjReference == ObjSourthReference) {
             //北桥参考对象
             ObjArray[1] = ObjReference[0].transform.position.z;
             ObjArray[2] = ObjReference[1].transform.position.z;
@@ -155,23 +162,30 @@ public class LevelOne_Manager : MonoBehaviour {
     }
 
     /// <summary>
-    /// 创建南桥道具，调用SendMessgObj方法
+    /// 创建场景所有道具，调用SendMessgObj方法
     /// </summary>
-    private void DynamicCreateSourthAllPrefabs() {
+    private void DynamicCreateAllPrefabs() {
         //根据里程来创建
         if (GlobalManager.Shifting == 0)
         {
-            SendMessgObj(ObjPrefaOriginal, 2, 10, ObjSourthReference);
+            SendMessgObj(ObjPrefaOriginal, 2, 10, ObjLeftReference);
 
         }
-        else if (GlobalManager.Shifting >= 40 && GlobalManager.Shifting < 192)
+        else if (GlobalManager.Shifting > 3 && GlobalManager.Shifting < 15)
         {
-            SendMessgObj(ObjPrefaOriginal, 5, 10, ObjSourthReference);
+            SendMessgObj(ObjPrefaOriginal, 5, 15, ObjLeftReference);
             //Debug.Log("创建出来道具的z轴坐标：" + ObjPrefaOriginal.transform.position.z);
         }
         //北桥道具
-        else if (GlobalManager.Shifting > 200&&GlobalManager.Shifting <390) {
-            SendMessgObj(ObjPrefaOriginal, 10, 10, ObjNorthReference);
+        else if (GlobalManager.Shifting > 15 && GlobalManager.Shifting < 30) {
+            SendMessgObj(ObjPrefaOriginal, 10, 15, ObjNorthReference);
+        } else if (GlobalManager.Shifting > 30 && GlobalManager.Shifting < 50) {
+            //右桥道具
+            SendMessgObj(ObjPrefaOriginal, 10, 20, ObjRightReference);
+        }
+        else if (GlobalManager.Shifting > 50 && GlobalManager.Shifting < 65)
+        {   //南桥道具
+            SendMessgObj(ObjPrefaOriginal, 10, 20, ObjSourthReference);
         }
     }
 
