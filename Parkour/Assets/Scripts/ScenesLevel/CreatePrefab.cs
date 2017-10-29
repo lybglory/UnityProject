@@ -45,7 +45,7 @@ public class CreatePrefab : MonoBehaviour {
         {
             GameObject cloneObj = (GameObject)Instantiate(originObj);
             if (IsSourth)
-            {   //南桥道具创建的位置
+            {   //左桥道具创建的位置
                 cloneObj.transform.position = new Vector3(GetRandomValue(minX, maxX), y, GetRandomValue(minZ, maxZ));
             }
             else {

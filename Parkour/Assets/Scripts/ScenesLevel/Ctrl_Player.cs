@@ -87,10 +87,9 @@ public class Ctrl_Player : MonoBehaviour {
 
     void Start () {
         if (Objreference!=null) {
-            Objreference = GameObject.Find("Environment/BridgeSourth/ObjReference/ObjMaxZ");
+            Objreference = GameObject.Find("Environment/BridgeLeft/ObjReference/ObjMaxZ");
             flMaxPoint = Objreference.transform.position.z;
         }
-        
         plAnimation =this.gameObject.GetComponent<Animation>();
         startPoint = this.gameObject.transform.position;
         GlobalManager.OriginPoint = startPoint.z;
@@ -110,15 +109,8 @@ public class Ctrl_Player : MonoBehaviour {
         if (GlobalManager.GlGameState == EnumGameState.Playing)
         {   //以第一人视角跑动
             this.transform.Translate(Vector3.forward * flRunSpeed, Space.Self);
-            int tempLogZ = (int)(transform.position.z - startPoint.z);
-            GlobalManager.Shifting = tempLogZ;
-            //表示主角向左转了，世界坐标系，移动距离变成了x
-            if (tempLogZ == GlobalManager.Shifting)
-            {
-                GlobalManager.Shifting += (int)(transform.position.x);
-            } 
-            
         }
+
         //回到起点位置
         if (this.transform.position.y < -20)
         {
@@ -170,7 +162,6 @@ public class Ctrl_Player : MonoBehaviour {
             switch (GlobalManager.EnumPlAction)
             {
                 case EnumPlayerAnima.None:
-                    
                     break;
                 case EnumPlayerAnima.Walking:
                     plAnimation.Play(PlWalkingiClip.name);
