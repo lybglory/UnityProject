@@ -86,8 +86,11 @@ public class Ctrl_Player : MonoBehaviour {
     private GameObject Objreference;
 
     void Start () {
-        Objreference=GameObject.Find("Environment/BridgeSourth/ObjReference/ObjMaxZ");
-        flMaxPoint = Objreference.transform.position.z;
+        if (Objreference!=null) {
+            Objreference = GameObject.Find("Environment/BridgeSourth/ObjReference/ObjMaxZ");
+            flMaxPoint = Objreference.transform.position.z;
+        }
+        
         plAnimation =this.gameObject.GetComponent<Animation>();
         startPoint = this.gameObject.transform.position;
         GlobalManager.OriginPoint = startPoint.z;
@@ -117,10 +120,10 @@ public class Ctrl_Player : MonoBehaviour {
             
         }
         //回到起点位置
-        //if (this.transform.position.z > flMaxPoint)
-        //{
-        //    this.transform.position = startPoint;
-        //}
+        if (this.transform.position.y < -20)
+        {
+            this.transform.position = startPoint;
+        }
         InputChangeCamera();
    
         
@@ -167,8 +170,7 @@ public class Ctrl_Player : MonoBehaviour {
             switch (GlobalManager.EnumPlAction)
             {
                 case EnumPlayerAnima.None:
-                    plAnimation.Play(PlStandingClip.name);
-                    yield return new WaitForSeconds(PlStandingClip.length);
+                    
                     break;
                 case EnumPlayerAnima.Walking:
                     plAnimation.Play(PlWalkingiClip.name);
