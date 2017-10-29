@@ -68,6 +68,7 @@ public class StartScenesGUI : MonoBehaviour {
         {
             Changevolume(GlobalManager.GlVol);
         }
+        GUI.Label(new Rect(Screen.width /2, 0, 500, 500), "疯狂跑酷",ParkourGUISkin.GetStyle("Label_Title"));
 
     }
 
