@@ -17,6 +17,7 @@ public class KenalScript : MonoBehaviour {
         }
         Debug.Log("Time.time=" + Time.time);
         Debug.Log("Time.fixedDeltaTime="+ Time.fixedDeltaTime);//0.02s
+        Debug.Log("Time.realtimeSinceStartup=" + Time.realtimeSinceStartup);
 	}
     private void FixedUpdate()
     {
