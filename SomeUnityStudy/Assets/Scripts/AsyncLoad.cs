@@ -12,11 +12,11 @@ public class AsyncLoad : MonoBehaviour {
     /// <summary>
     /// 间隔时间
     /// </summary>
-    private float flInterval = 0;
+    private float flInterval = 10;
     /// <summary>
     /// 异步加载操作
     /// </summary>
-    AsyncOperation asyncOperaNext;
+    //AsyncOperation asyncOperaNext;
     /// <summary>
     /// 进度值
     /// </summary>
@@ -28,17 +28,20 @@ public class AsyncLoad : MonoBehaviour {
 
     private void Update()
     {
-        loadSlider.value += flProgress;
-        Debug.Log("异步加载进度值：=" + asyncOperaNext.progress.ToString());
-        Debug.Log("Slide进度值：=" + loadSlider.value);
+        flInterval-= Time.deltaTime;
+        
+        loadSlider.value += Time.deltaTime;
     }
 
     IEnumerator LoadNextScene() {
 
-        asyncOperaNext = SceneManager.LoadSceneAsync("LevelOneScene");
+        AsyncOperation asyncOperaNext = SceneManager.LoadSceneAsync("LevelOneScene");
+            flProgress = asyncOperaNext.progress;
+            yield return asyncOperaNext;
+         
         //Debug.Log("异步加载进度值：=" + flProgress);
-        flProgress = asyncOperaNext.progress;
-        yield return asyncOperaNext;
-        //loadSlider.value;
+        
+        
+
     }
 }
