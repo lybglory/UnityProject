@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BlendTreecController : MonoBehaviour {
+    //持有Animator句柄
     public Animator BlAnimator;
-
+    //初始值
     public float FlDirectionDampTime = 0.25f;
     public float FlHorizonalSpeed = 0.35f;
     public float FlForwardSpeed = 0.6f;
@@ -21,7 +22,6 @@ public class BlendTreecController : MonoBehaviour {
         BlAnimator = transform.GetComponent<Animator>();
     }
 	
-	// Update is called once per frame
 	void Update () {
         if (BlAnimator) {
             AnimatorStateInfo stateInfo = BlAnimator.GetCurrentAnimatorStateInfo(0);
@@ -36,13 +36,11 @@ public class BlendTreecController : MonoBehaviour {
             }
             //设置水平的移动的临界值（-1向左，0空闲，1向右）
             BlAnimator.SetFloat("Speed", flHorizonal*1);
-            //设置前后移动的临界值
+            //设置前后移动的临界值。从初始值，光滑过渡到flHorizonal值
             BlAnimator.SetFloat("Direction", flVeritcal, FlDirectionDampTime, Time.deltaTime);
             Debug.Log("Speed="+ flHorizonal *1+ ";Direction="+flVeritcal);
             if (stateInfo.IsName("Blend Tree"))
             {
-                BlAnimator.SetFloat("Speed", flHorizonal * 1);
-                BlAnimator.SetFloat("Direction", flVeritcal, FlDirectionDampTime, Time.deltaTime);
                 //小于0左移动,对应的blendTree里面的临界值
                 Debug.Log("Horizontal=" + flHorizonal + ";Vertical=" + flVeritcal);
                 if (flHorizonal < 0) {
@@ -59,7 +57,7 @@ public class BlendTreecController : MonoBehaviour {
                     transform.position += -transform.forward * FlBackSpeed * Time.deltaTime;
                 }
             }
-        }
-        
-	}
-}
+        }//if(BlAnimator)_end
+
+    }//Update_end
+}//class_end
