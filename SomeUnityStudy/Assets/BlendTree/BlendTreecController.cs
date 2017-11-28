@@ -6,16 +6,19 @@ public class BlendTreecController : MonoBehaviour {
     public Animator BlAnimator;
 
     public float FlDirectionDampTime = 0.25f;
-    //public float FlLeftSpeed = 0.35f;
     public float FlHorizonalSpeed = 0.35f;
     public float FlForwardSpeed = 0.6f;
     public float FlBackSpeed = 0.55f;
+    /// <summary>
+    /// 存储水平轴的值
+    /// </summary>
     private float flHorizonal;
+    /// <summary>
+    /// 存储垂直轴的值
+    /// </summary>
     private float flVeritcal;
-	// Use this for initialization
 	void Start () {
         BlAnimator = transform.GetComponent<Animator>();
-
     }
 	
 	// Update is called once per frame
@@ -23,36 +26,37 @@ public class BlendTreecController : MonoBehaviour {
         if (BlAnimator) {
             AnimatorStateInfo stateInfo = BlAnimator.GetCurrentAnimatorStateInfo(0);
             flHorizonal = Input.GetAxis("Horizontal");
-             flVeritcal = Input.GetAxis("Vertical");
-            Debug.Log("Horizontal="+flHorizonal + ";Vertical=" + flVeritcal);
-            BlAnimator.SetFloat("Speed", flHorizonal * flHorizonal + flVeritcal * flVeritcal);
+            flVeritcal = Input.GetAxis("Vertical");
+            //设置动画过渡
+            if (flHorizonal != 0|| flVeritcal!=0){
+                BlAnimator.SetBool("IsMove", true);
+            }
+            else{
+                BlAnimator.SetBool("IsMove", false);
+            }
+            //设置水平的移动的临界值（-1向左，0空闲，1向右）
+            BlAnimator.SetFloat("Speed", flHorizonal*1);
+            //设置前后移动的临界值
             BlAnimator.SetFloat("Direction", flVeritcal, FlDirectionDampTime, Time.deltaTime);
+            Debug.Log("Speed="+ flHorizonal *1+ ";Direction="+flVeritcal);
             if (stateInfo.IsName("Blend Tree"))
             {
-                //左移动,对应的blendTree里面的临界值
+                BlAnimator.SetFloat("Speed", flHorizonal * 1);
+                BlAnimator.SetFloat("Direction", flVeritcal, FlDirectionDampTime, Time.deltaTime);
+                //小于0左移动,对应的blendTree里面的临界值
+                Debug.Log("Horizontal=" + flHorizonal + ";Vertical=" + flVeritcal);
                 if (flHorizonal < 0) {
-                    //transform.LookAt(new Vector3(transform.position.x + flHorizonal, transform.position.y, transform.position.z + flVeritcal));
-                    //transform.Translate(-transform.right * FlHorizonalSpeed * Time.deltaTime);
                     transform.position += -transform.right * FlHorizonalSpeed * Time.deltaTime;
                 } else if (flHorizonal > 0) {
-                    //右移动，对应的blendTree临界值
-                    //transform.LookAt(new Vector3(transform.position.x + flHorizonal, transform.position.y, transform.position.z + flVeritcal));
-                    //transform.Translate(transform.right * FlHorizonalSpeed * Time.deltaTime);
-
+                    //大于0右移动，对应的blendTree临界值
                     transform.position += transform.right * FlHorizonalSpeed * Time.deltaTime;
                 }
-                //向前
+                
+                //前后的位移
                 if (flVeritcal > 0) {
-                    //transform.LookAt(new Vector3(transform.position.x + flHorizonal, transform.position.y, transform.position.z + flVeritcal));
-                    //transform.Translate(transform.forward * FlForwardSpeed * Time.deltaTime);
-
                     transform.position += transform.forward * FlForwardSpeed * Time.deltaTime;
                 } else if (flVeritcal<0) {
-                    //transform.LookAt(new Vector3(transform.position.x + flHorizonal, transform.position.y, transform.position.z + flVeritcal));
-                    //transform.Translate(-transform.forward * FlBackSpeed * Time.deltaTime);
-
                     transform.position += -transform.forward * FlBackSpeed * Time.deltaTime;
-
                 }
             }
         }
