@@ -58,6 +58,5 @@ public class BlendTreecController : MonoBehaviour {
                 }
             }
         }//if(BlAnimator)_end
-
-    }//Update_end
+    }//Update()_end
 }//class_end
