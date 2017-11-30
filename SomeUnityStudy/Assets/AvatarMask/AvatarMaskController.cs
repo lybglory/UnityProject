@@ -23,6 +23,5 @@ public class AvatarMaskController : MonoBehaviour {
                 PlAnimator.SetBool("IsRoll", false);
             }
         }
-
-    }
-}
+    }//Update()_end
+}//class_end
