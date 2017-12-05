@@ -9,14 +9,14 @@ public class navMesh : MonoBehaviour {
     /// 目标位置
     /// </summary>
     public Transform TransTarget;
-	// Use this for initialization
+
 	void Start () {
         NMAgent=transform.GetComponent<NavMeshAgent>();
 	}
 	
-	// Update is called once per frame
 	void Update () {
         if (NMAgent&TransTarget) {
+            //设置自动寻路
             NMAgent.SetDestination(TransTarget.position);
         }
 	}
