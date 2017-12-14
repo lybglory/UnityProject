@@ -11,13 +11,13 @@ public class navMesh : MonoBehaviour {
     public Transform TransTarget;
 
 	void Start () {
-        NMAgent=transform.GetComponent<NavMeshAgent>();
+        	NMAgent=transform.GetComponent<NavMeshAgent>();
 	}
 	
 	void Update () {
-        if (NMAgent&TransTarget) {
-            //设置自动寻路
-            NMAgent.SetDestination(TransTarget.position);
-        }
+        	if (NMAgent&TransTarget) {
+            		//设置自动寻路
+            		NMAgent.SetDestination(TransTarget.position);
+        	}
 	}
 }
