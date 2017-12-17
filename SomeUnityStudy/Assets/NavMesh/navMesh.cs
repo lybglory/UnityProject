@@ -11,6 +11,7 @@ public class navMesh : MonoBehaviour {
     public Transform TransTarget;
 
 	void Start () {
+		//get component
         	NMAgent=transform.GetComponent<NavMeshAgent>();
 	}
 	
