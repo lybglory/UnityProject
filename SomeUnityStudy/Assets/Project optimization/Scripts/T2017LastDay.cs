@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class 2017LastDay : MonoBehaviour {
+public class Ｔ2017LastDay : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
