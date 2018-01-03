@@ -1,0 +1,3 @@
+public class latest{
+    void Start(){Debug.Log(99)}
+}
