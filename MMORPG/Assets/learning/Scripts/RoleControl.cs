@@ -27,12 +27,14 @@ public class RoleControl : MonoBehaviour {
         if (Input.GetMouseButtonUp(0)) {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray,out raycastHit)){
+                //判断射线碰到的土体是否是"Plane"
                 if (raycastHit.collider.gameObject.name.Equals("Plane",System.StringComparison.CurrentCultureIgnoreCase)) {
                     targetPosition = raycastHit.point;
                 }
             }
         }
 
+        //Scene视图画射线
         if (targetPosition!=Vector3.zero) {
             Debug.DrawLine(Camera.main.transform.position, targetPosition,Color.red);
         }
