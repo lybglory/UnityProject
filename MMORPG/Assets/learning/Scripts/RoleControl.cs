@@ -16,11 +16,20 @@ public class RoleControl : MonoBehaviour {
     /// </summary>
     private Vector3 targetPosition;
     RaycastHit raycastHit;
+    /// <summary>
+    /// 目标位置的方向和距离
+    /// </summary>
+    private Vector3 direction;
+    /// <summary>
+    /// 移动速度
+    /// </summary>
+    [SerializeField]
+    private float moveSpeed=5;
 
     // Use this for initialization
     void Start () {
-		
-	}
+        characterController = this.transform.GetComponent<CharacterController>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -34,9 +43,21 @@ public class RoleControl : MonoBehaviour {
             }
         }
 
-        //Scene视图画射线
+        
         if (targetPosition!=Vector3.zero) {
+            //Scene视图画射线
             Debug.DrawLine(Camera.main.transform.position, targetPosition,Color.red);
+            //移动到目标点，先要得到目标点的方向和距离
+            direction = targetPosition - this.transform.position;
+            //方向和距离要进行归一化
+            direction = direction.normalized;
+            //当目标点和角色点之间的距离>0.1才会进行移动，解决角色抖动的bug
+            if (Vector3.Distance(this.transform.position, targetPosition) >0.1f) {
+                
+                //角色移动需要乘以一个时间变量，平滑移动
+                characterController.Move(direction*Time.deltaTime*moveSpeed);
+            }
+            
         }
         
     }
