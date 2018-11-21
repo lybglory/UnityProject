@@ -25,6 +25,11 @@ public class RoleControl : MonoBehaviour {
     /// </summary>
     [SerializeField]
     private float moveSpeed=5;
+    Quaternion targetQuaternion;
+    /// <summary>
+    /// 转身速度
+    /// </summary>
+    private float rotateSpeed=5;
 
     // Use this for initialization
     void Start () {
@@ -53,7 +58,10 @@ public class RoleControl : MonoBehaviour {
             direction = direction.normalized;
             //当目标点和角色点之间的距离>0.1才会进行移动，解决角色抖动的bug
             if (Vector3.Distance(this.transform.position, targetPosition) >0.1f) {
-                
+
+                targetQuaternion = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetQuaternion,Time.deltaTime*rotateSpeed);
+
                 //角色移动需要乘以一个时间变量，平滑移动
                 characterController.Move(direction*Time.deltaTime*moveSpeed);
             }
