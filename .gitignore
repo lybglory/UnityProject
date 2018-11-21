@@ -14,3 +14,7 @@ Standard Assets/
 /Parkour
 *.dds
 *.tga
+/MMORPG/Assets/Resources/
+*/obj/
+*/Library/
+*/Packages/
