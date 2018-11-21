@@ -66,7 +66,7 @@ public class RoleControl : MonoBehaviour {
             direction = targetPosition - this.transform.position;
             //方向和距离要进行归一化
             direction = direction.normalized ;
-
+            direction.y = 0;//解决短距离移动时，角色向前倒的bug
             //当目标点和角色点之间的距离>0.1才会进行移动，解决角色抖动的bug
             if (Vector3.Distance(targetPosition, this.transform.position) >0.1f) {
                 //--角色转身--
@@ -76,6 +76,7 @@ public class RoleControl : MonoBehaviour {
                     targetQuaternion = Quaternion.LookRotation(direction);
                     //让角色缓慢转身,匀速旋转Slerp插值
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetQuaternion, Time.deltaTime * rotateSpeed);
+                    //当目标和角色的夹角<1时。转身结束
                     if (Quaternion.Angle(targetQuaternion, transform.rotation)<1)
                     {
                         rotateSpeed = 1;//转身速度归1
