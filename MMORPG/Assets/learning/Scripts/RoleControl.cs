@@ -25,11 +25,19 @@ public class RoleControl : MonoBehaviour {
     /// </summary>
     [SerializeField]
     private float moveSpeed=5;
+    /// <summary>
+    /// 目标转身四元数
+    /// </summary>
     Quaternion targetQuaternion;
     /// <summary>
     /// 转身速度
     /// </summary>
-    private float rotateSpeed=5;
+    [SerializeField]
+    private float rotateSpeed=1;
+    /// <summary>
+    /// 标记位，标记是否转身完
+    /// </summary>
+    private bool isRotateOver;
 
     // Use this for initialization
     void Start () {
@@ -44,6 +52,8 @@ public class RoleControl : MonoBehaviour {
                 //判断射线碰到的土体是否是"Plane"
                 if (raycastHit.collider.gameObject.name.Equals("Plane",System.StringComparison.CurrentCultureIgnoreCase)) {
                     targetPosition = raycastHit.point;
+                    isRotateOver = false;
+                    rotateSpeed = 0;
                 }
             }
         }
@@ -55,15 +65,27 @@ public class RoleControl : MonoBehaviour {
             //移动到目标点，先要得到目标点的方向和距离
             direction = targetPosition - this.transform.position;
             //方向和距离要进行归一化
-            direction = direction.normalized;
-            //当目标点和角色点之间的距离>0.1才会进行移动，解决角色抖动的bug
-            if (Vector3.Distance(this.transform.position, targetPosition) >0.1f) {
+            direction = direction.normalized ;
 
-                targetQuaternion = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Lerp(transform.rotation, targetQuaternion,Time.deltaTime*rotateSpeed);
+            //当目标点和角色点之间的距离>0.1才会进行移动，解决角色抖动的bug
+            if (Vector3.Distance(targetPosition, this.transform.position) >0.1f) {
+                //--角色转身--
+                if (isRotateOver==false)
+                {
+                    rotateSpeed += 5f;
+                    targetQuaternion = Quaternion.LookRotation(direction);
+                    //让角色缓慢转身,匀速旋转Slerp插值
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetQuaternion, Time.deltaTime * rotateSpeed);
+                    if (Quaternion.Angle(targetQuaternion, transform.rotation)<1)
+                    {
+                        rotateSpeed = 1;//转身速度归1
+                        isRotateOver = true;
+                    }
+                }
+                //--角色转身--
 
                 //角色移动需要乘以一个时间变量，平滑移动
-                characterController.Move(direction*Time.deltaTime*moveSpeed);
+                characterController.Move(direction * Time.deltaTime * moveSpeed);
             }
             
         }
