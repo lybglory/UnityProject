@@ -7,15 +7,11 @@ public class RoleControl : MonoBehaviour {
     /// 角色控制器
     /// </summary>
     private CharacterController characterController;
-    /// <summary>
-    /// 射线
-    /// </summary>
-    private Ray ray;
+
     /// <summary>
     /// 目标位置
     /// </summary>
     private Vector3 targetPosition;
-    RaycastHit raycastHit;
     /// <summary>
     /// 目标位置的方向和距离
     /// </summary>
@@ -46,12 +42,27 @@ public class RoleControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        #region 鼠标右键拾取
+        if (Input.GetMouseButtonUp(1)) {
+            Ray rightRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit rightRaycastHit;
+            if (Physics.Raycast(rightRay, out rightRaycastHit,Mathf.Infinity,1<<LayerMask.NameToLayer("Item"))) {
+                BoxCtrl boxCtrl = rightRaycastHit.collider.GetComponent<BoxCtrl>();
+                if (boxCtrl!=null) {
+                    //调用点击的方法
+                    boxCtrl.BoxHit();
+                }
+            }
+        }
+        #endregion
+
         if (Input.GetMouseButtonUp(0)) {
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray,out raycastHit)){
+            Ray leftRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit leftRaycastHit;
+            if(Physics.Raycast(leftRay,out leftRaycastHit)){
                 //判断射线碰到的土体是否是"Plane"
-                if (raycastHit.collider.gameObject.name.Equals("Plane",System.StringComparison.CurrentCultureIgnoreCase)) {
-                    targetPosition = raycastHit.point;
+                if (leftRaycastHit.collider.gameObject.name.Equals("Plane",System.StringComparison.CurrentCultureIgnoreCase)) {
+                    targetPosition = leftRaycastHit.point;
                     isRotateOver = false;
                     rotateSpeed = 0;
                 }

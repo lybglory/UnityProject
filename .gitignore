@@ -14,7 +14,9 @@ Standard Assets/
 /Parkour
 *.dds
 *.tga
-/MMORPG/Assets/Resources/
+*/*/*/Resources/
 */obj/
 */Library/
 */Packages/
+*/*/Resources/
+/DungeoFighterMMORPG/
