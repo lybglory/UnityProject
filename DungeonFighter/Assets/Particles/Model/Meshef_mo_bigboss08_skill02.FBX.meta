@@ -1,0 +1,88 @@
+fileFormatVersion: 2
+guid: c234136bbc0046d43a444a022a8f106d
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Mesh_bigboss08_attack1
+    100002: Mesh_bigboss08_attack2
+    100004: Mesh_bigboss08_attack3
+    100006: Mesh_bigboss08_skill02
+    100008: Mesh_bigboss08_skill02_a001
+    100010: //RootNode
+    400000: Mesh_bigboss08_attack1
+    400002: Mesh_bigboss08_attack2
+    400004: Mesh_bigboss08_attack3
+    400006: Mesh_bigboss08_skill02
+    400008: Mesh_bigboss08_skill02_a001
+    400010: //RootNode
+    2300000: Mesh_bigboss08_attack1
+    2300002: Mesh_bigboss08_attack2
+    2300004: Mesh_bigboss08_attack3
+    2300006: Mesh_bigboss08_skill02
+    2300008: Mesh_bigboss08_skill02_a001
+    3300000: Mesh_bigboss08_attack1
+    3300002: Mesh_bigboss08_attack2
+    3300004: Mesh_bigboss08_attack3
+    3300006: Mesh_bigboss08_skill02
+    3300008: Mesh_bigboss08_skill02_a001
+    4300000: Mesh_bigboss08_skill02
+    4300002: Mesh_bigboss08_attack1
+    4300004: Mesh_bigboss08_attack2
+    4300006: Mesh_bigboss08_attack3
+    4300008: Mesh_bigboss08_skill02_a001
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 

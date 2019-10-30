@@ -1,0 +1,120 @@
+fileFormatVersion: 2
+guid: 2d5acc43734e6e64f849134519570f32
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Mesh_Player03_attack1
+    100004: Mesh_Player03_attack4
+    100006: Mesh_player03_attack4a
+    100008: Mesh_player03_skill02
+    100010: Mesh_player03_skill02_Emmiter
+    100012: Mesh_player03_skill03
+    100014: Mesh_player03_stone
+    100016: Mesh_player03_line01
+    100018: Mesh_player03_line02
+    100020: Mesh_player03_line03
+    100022: Mesh_player03_skill06_Emmiter
+    400000: //RootNode
+    400002: Mesh_Player03_attack1
+    400004: Mesh_Player03_attack4
+    400006: Mesh_player03_attack4a
+    400008: Mesh_player03_skill02
+    400010: Mesh_player03_skill02_Emmiter
+    400012: Mesh_player03_skill03
+    400014: Mesh_player03_stone
+    400016: Mesh_player03_line01
+    400018: Mesh_player03_line02
+    400020: Mesh_player03_line03
+    400022: Mesh_player03_skill06_Emmiter
+    2300000: //RootNode
+    2300002: Mesh_Player03_attack1
+    2300004: Mesh_Player03_attack4
+    2300006: Mesh_player03_attack4a
+    2300008: Mesh_player03_skill02
+    2300010: Mesh_player03_skill02_Emmiter
+    2300012: Mesh_player03_skill03
+    2300014: Mesh_player03_stone
+    2300016: Mesh_player03_line01
+    2300018: Mesh_player03_line02
+    2300020: Mesh_player03_line03
+    2300022: Mesh_player03_skill06_Emmiter
+    3300000: //RootNode
+    3300002: Mesh_Player03_attack1
+    3300004: Mesh_Player03_attack4
+    3300006: Mesh_player03_attack4a
+    3300008: Mesh_player03_skill02
+    3300010: Mesh_player03_skill02_Emmiter
+    3300012: Mesh_player03_skill03
+    3300014: Mesh_player03_stone
+    3300016: Mesh_player03_line01
+    3300018: Mesh_player03_line02
+    3300020: Mesh_player03_line03
+    3300022: Mesh_player03_skill06_Emmiter
+    4300000: Mesh_Player03_attack1
+    4300002: Mesh_Player03_attack4
+    4300004: Mesh_player03_attack4a
+    4300006: Mesh_player03_skill02
+    4300008: Mesh_player03_skill02_Emmiter
+    4300010: Mesh_player03_skill03
+    4300012: Mesh_player03_stone
+    4300014: Mesh_player03_line01
+    4300016: Mesh_player03_line02
+    4300018: Mesh_player03_line03
+    4300020: Mesh_player03_skill06_Emmiter
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 0
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 

@@ -1,0 +1,129 @@
+fileFormatVersion: 2
+guid: d714ffe8ec1fc974ebd7020a6bfe5c8e
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: ch_player01a001
+    100002: ch_player01a002
+    100004: ch_player01a003
+    100006: ch_player01a004
+    100008: ch_player01a005
+    100010: ch_player01a006
+    100012: ch_player01a007
+    100014: ch_player01a008
+    100016: ch_player01a009
+    100018: //RootNode
+    100020: Mesh_player01_slay01a
+    100022: Mesh_player01_slay01b
+    100024: Mesh_player01_slay01a01
+    100026: Mesh_player01_slay01c
+    400000: ch_player01a001
+    400002: ch_player01a002
+    400004: ch_player01a003
+    400006: ch_player01a004
+    400008: ch_player01a005
+    400010: ch_player01a006
+    400012: ch_player01a007
+    400014: ch_player01a008
+    400016: ch_player01a009
+    400018: //RootNode
+    400020: Mesh_player01_slay01a
+    400022: Mesh_player01_slay01b
+    400024: Mesh_player01_slay01a01
+    400026: Mesh_player01_slay01c
+    2300000: ch_player01a001
+    2300002: ch_player01a002
+    2300004: ch_player01a003
+    2300006: ch_player01a004
+    2300008: ch_player01a005
+    2300010: ch_player01a006
+    2300012: ch_player01a007
+    2300014: ch_player01a008
+    2300016: ch_player01a009
+    2300018: Mesh_player01_slay01a
+    2300020: Mesh_player01_slay01b
+    2300022: Mesh_player01_slay01a01
+    2300024: Mesh_player01_slay01c
+    3300000: ch_player01a001
+    3300002: ch_player01a002
+    3300004: ch_player01a003
+    3300006: ch_player01a004
+    3300008: ch_player01a005
+    3300010: ch_player01a006
+    3300012: ch_player01a007
+    3300014: ch_player01a008
+    3300016: ch_player01a009
+    3300018: Mesh_player01_slay01a
+    3300020: Mesh_player01_slay01b
+    3300022: Mesh_player01_slay01a01
+    3300024: Mesh_player01_slay01c
+    4300000: ch_player01a001
+    4300002: ch_player01a002
+    4300004: ch_player01a003
+    4300006: ch_player01a004
+    4300008: ch_player01a005
+    4300010: ch_player01a006
+    4300012: ch_player01a007
+    4300014: ch_player01a008
+    4300016: ch_player01a009
+    4300018: Mesh_player01_slay01a
+    4300020: Mesh_player01_slay01b
+    4300022: Mesh_player01_slay01a01
+    4300024: Mesh_player01_slay01c
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 

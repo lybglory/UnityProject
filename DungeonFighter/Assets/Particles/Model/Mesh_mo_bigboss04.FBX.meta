@@ -1,0 +1,141 @@
+fileFormatVersion: 2
+guid: eacf96bbc62d7a447b6dc165e3577839
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Mesh_bigboss04_attack01
+    100004: Mesh_bigboss04_attack01a
+    100006: Mesh_bigboss04_skill01
+    100008: Bone01
+    100010: Bone02
+    100012: Mesh_bigboss07_attack02
+    100014: Mesh_bigboss07_attack02a
+    100016: Mesh_bigboss04_attack01b
+    100018: Mesh_bigboss05_birth
+    100020: Mesh_bigboss05_Quad
+    100022: Mesh_bigboss05_skill03
+    100024: Helix001
+    100026: Mesh_bigboss04_skill03a
+    100028: Mesh_bigboss04_skill03b
+    100030: Plane001
+    400000: //RootNode
+    400002: Mesh_bigboss04_attack01
+    400004: Mesh_bigboss04_attack01a
+    400006: Mesh_bigboss04_skill01
+    400008: Bone01
+    400010: Bone02
+    400012: Mesh_bigboss07_attack02
+    400014: Mesh_bigboss07_attack02a
+    400016: Mesh_bigboss04_attack01b
+    400018: Mesh_bigboss05_birth
+    400020: Mesh_bigboss05_Quad
+    400022: Mesh_bigboss05_skill03
+    400024: Helix001
+    400026: Mesh_bigboss04_skill03a
+    400028: Mesh_bigboss04_skill03b
+    400030: Plane001
+    2300000: //RootNode
+    2300002: Mesh_bigboss04_attack01
+    2300004: Mesh_bigboss04_attack01a
+    2300006: Mesh_bigboss04_skill01
+    2300008: Bone01
+    2300010: Bone02
+    2300012: Mesh_bigboss07_attack02
+    2300014: Mesh_bigboss07_attack02a
+    2300016: Mesh_bigboss04_attack01b
+    2300018: Mesh_bigboss05_birth
+    2300020: Mesh_bigboss05_Quad
+    2300022: Mesh_bigboss05_skill03
+    2300024: Mesh_bigboss04_skill03a
+    2300026: Mesh_bigboss04_skill03b
+    2300028: Plane001
+    3300000: //RootNode
+    3300002: Mesh_bigboss04_attack01
+    3300004: Mesh_bigboss04_attack01a
+    3300006: Mesh_bigboss04_skill01
+    3300008: Bone01
+    3300010: Bone02
+    3300012: Mesh_bigboss07_attack02
+    3300014: Mesh_bigboss07_attack02a
+    3300016: Mesh_bigboss04_attack01b
+    3300018: Mesh_bigboss05_birth
+    3300020: Mesh_bigboss05_Quad
+    3300022: Mesh_bigboss05_skill03
+    3300024: Mesh_bigboss04_skill03a
+    3300026: Mesh_bigboss04_skill03b
+    3300028: Plane001
+    4300000: Cylinder01
+    4300002: mo_bigboss04_attack01
+    4300004: mesh_bigboss04_attack01
+    4300006: Mesh_bigboss04_attack01
+    4300008: Mesh_bigboss04_attack01a
+    4300010: Mesh_bigboss04_skill01
+    4300012: Bone01
+    4300014: Bone02
+    4300016: Mesh_bigboss07_attack02
+    4300018: Mesh_bigboss07_attack02a
+    4300020: Mesh_bigboss04_attack01b
+    4300022: Mesh_bigboss05_birth
+    4300024: Mesh_bigboss05_Quad
+    4300026: Mesh_bigboss05_skill03
+    4300028: Mesh_bigboss04_skill03a
+    4300030: Plane001
+    4300032: Mesh_bigboss04_skill03b
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Mesh_bigboss04_skill01
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
