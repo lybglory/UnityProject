@@ -1,0 +1,245 @@
+fileFormatVersion: 2
+guid: 9037b06444af9e445b97e4726594a3ed
+timeCreated: 1507823151
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Pyramid336
+    100004: Pyramid337
+    100006: Pyramid338
+    100008: Pyramid339
+    100010: Pyramid344
+    100012: Pyramid345
+    100014: Pyramid346
+    100016: Pyramid347
+    100018: Pyramid348
+    100020: Pyramid349
+    100022: Pyramid350
+    100024: Pyramid351
+    100026: Pyramid356
+    100028: Pyramid357
+    100030: Pyramid358
+    100032: Pyramid359
+    100034: Pyramid365
+    100036: Pyramid366
+    100038: Pyramid367
+    100040: Pyramid368
+    100042: Pyramid369
+    100044: Pyramid370
+    100046: Pyramid371
+    100048: Pyramid372
+    100050: Pyramid373
+    100052: Pyramid374
+    100054: Pyramid375
+    100056: Pyramid380
+    100058: Pyramid381
+    100060: Pyramid382
+    100062: Pyramid383
+    100064: Pyramid384
+    400000: //RootNode
+    400002: Pyramid336
+    400004: Pyramid337
+    400006: Pyramid338
+    400008: Pyramid339
+    400010: Pyramid344
+    400012: Pyramid345
+    400014: Pyramid346
+    400016: Pyramid347
+    400018: Pyramid348
+    400020: Pyramid349
+    400022: Pyramid350
+    400024: Pyramid351
+    400026: Pyramid356
+    400028: Pyramid357
+    400030: Pyramid358
+    400032: Pyramid359
+    400034: Pyramid365
+    400036: Pyramid366
+    400038: Pyramid367
+    400040: Pyramid368
+    400042: Pyramid369
+    400044: Pyramid370
+    400046: Pyramid371
+    400048: Pyramid372
+    400050: Pyramid373
+    400052: Pyramid374
+    400054: Pyramid375
+    400056: Pyramid380
+    400058: Pyramid381
+    400060: Pyramid382
+    400062: Pyramid383
+    400064: Pyramid384
+    2300000: Pyramid336
+    2300002: Pyramid337
+    2300004: Pyramid338
+    2300006: Pyramid339
+    2300008: Pyramid344
+    2300010: Pyramid345
+    2300012: Pyramid346
+    2300014: Pyramid347
+    2300016: Pyramid348
+    2300018: Pyramid349
+    2300020: Pyramid350
+    2300022: Pyramid351
+    2300024: Pyramid356
+    2300026: Pyramid357
+    2300028: Pyramid358
+    2300030: Pyramid359
+    2300032: Pyramid365
+    2300034: Pyramid366
+    2300036: Pyramid367
+    2300038: Pyramid368
+    2300040: Pyramid369
+    2300042: Pyramid370
+    2300044: Pyramid371
+    2300046: Pyramid372
+    2300048: Pyramid373
+    2300050: Pyramid374
+    2300052: Pyramid375
+    2300054: Pyramid380
+    2300056: Pyramid381
+    2300058: Pyramid382
+    2300060: Pyramid383
+    2300062: Pyramid384
+    3300000: Pyramid336
+    3300002: Pyramid337
+    3300004: Pyramid338
+    3300006: Pyramid339
+    3300008: Pyramid344
+    3300010: Pyramid345
+    3300012: Pyramid346
+    3300014: Pyramid347
+    3300016: Pyramid348
+    3300018: Pyramid349
+    3300020: Pyramid350
+    3300022: Pyramid351
+    3300024: Pyramid356
+    3300026: Pyramid357
+    3300028: Pyramid358
+    3300030: Pyramid359
+    3300032: Pyramid365
+    3300034: Pyramid366
+    3300036: Pyramid367
+    3300038: Pyramid368
+    3300040: Pyramid369
+    3300042: Pyramid370
+    3300044: Pyramid371
+    3300046: Pyramid372
+    3300048: Pyramid373
+    3300050: Pyramid374
+    3300052: Pyramid375
+    3300054: Pyramid380
+    3300056: Pyramid381
+    3300058: Pyramid382
+    3300060: Pyramid383
+    3300062: Pyramid384
+    4300000: Pyramid351
+    4300002: Pyramid383
+    4300004: Pyramid382
+    4300006: Pyramid381
+    4300008: Pyramid380
+    4300010: Pyramid375
+    4300012: Pyramid374
+    4300014: Pyramid336
+    4300016: Pyramid337
+    4300018: Pyramid338
+    4300020: Pyramid339
+    4300022: Pyramid344
+    4300024: Pyramid345
+    4300026: Pyramid346
+    4300028: Pyramid347
+    4300030: Pyramid348
+    4300032: Pyramid349
+    4300034: Pyramid350
+    4300036: Pyramid384
+    4300038: Pyramid356
+    4300040: Pyramid357
+    4300042: Pyramid358
+    4300044: Pyramid359
+    4300046: Pyramid365
+    4300048: Pyramid366
+    4300050: Pyramid367
+    4300052: Pyramid368
+    4300054: Pyramid369
+    4300056: Pyramid370
+    4300058: Pyramid371
+    4300060: Pyramid372
+    4300062: Pyramid373
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.05
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
