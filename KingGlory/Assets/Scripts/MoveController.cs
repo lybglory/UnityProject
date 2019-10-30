@@ -32,7 +32,7 @@ public class MoveController : MonoBehaviour {
         if (move.joystickName == "MoveJoystick")
         {
             //GetComponent<Animation>().CrossFade("idle");
-            plAnimator.SetInteger("state", 0);
+            plAnimator.SetInteger("state", PlayerAnimatorState.Idle);
         }
     }
     void OnJoystickMove(MovingJoystick move)
@@ -54,7 +54,7 @@ public class MoveController : MonoBehaviour {
             transform.Translate(Vector3.forward * Time.deltaTime * 5);
             //播放奔跑动画
             //GetComponent<Animation>().CrossFade("run");
-            plAnimator.SetInteger("state", 1);
+            plAnimator.SetInteger("state", PlayerAnimatorState.Run);
         }
     }
 }
