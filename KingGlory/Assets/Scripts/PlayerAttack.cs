@@ -6,12 +6,18 @@ public class PlayerAttack : MonoBehaviour {
 
     private Animator plAtkAnimaor;
     /// <summary>
-    /// 技能特效句柄
+    /// 技能1特效句柄
     /// </summary>
     [SerializeField]
-    private ParticleSystem effectFire;
-	// Use this for initialization
-	void Start () {
+    private ParticleSystem effectFire1;
+
+    /// <summary>
+    /// 技能2特效句柄
+    /// </summary>
+    [SerializeField]
+    private ParticleSystem effectFire2;
+    // Use this for initialization
+    void Start () {
         plAtkAnimaor = GetComponent<Animator>();
 
     }
@@ -39,6 +45,9 @@ public class PlayerAttack : MonoBehaviour {
     }
 
     public void Effec1() {
-        effectFire.Play();
+        effectFire1.Play();
+    }
+    public void Effect2() {
+        effectFire2.Play();
     }
 }
