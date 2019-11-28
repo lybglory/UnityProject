@@ -290,6 +290,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4856659986592020}
   - component: {fileID: 111217557030085208}
+  - component: {fileID: 114113819368705092}
+  - component: {fileID: 195558053340206204}
   m_Layer: 0
   m_Name: StoneKing
   m_TagString: Untagged
@@ -1417,6 +1419,19 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 1
+--- !u!114 &114113819368705092
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387591561270368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff2c44172930534e84764f5bfac0dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transTarget: {fileID: 0}
+  enemyTrans: []
 --- !u!137 &137010238457825654
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1552,3 +1567,24 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.12622154, y: -0.07358739, z: 0.001403451}
     m_Extent: {x: 0.6838521, y: 0.5543978, z: 0.5182272}
   m_DirtyAABB: 0
+--- !u!195 &195558053340206204
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387591561270368}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

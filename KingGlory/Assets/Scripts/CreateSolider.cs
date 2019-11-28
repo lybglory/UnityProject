@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class CreateSolider : MonoBehaviour {
     [SerializeField]
-    private GameObject ObjSolider;
+    private GameObject ObjSoliderPrefab;
     [SerializeField]
     private Transform startTransSolider;
     [SerializeField]
     private Transform objSoliderParent;
     private bool isCreate = true;
+
+    /// <summary>
+    ///  敌方箭塔
+    /// </summary>
+    [SerializeField]
+    private Transform[] enemyTowers;
+
     /// <summary>
     /// 一波小兵的数量
     /// </summary>
@@ -20,11 +27,16 @@ public class CreateSolider : MonoBehaviour {
 	}
 
     /// <summary>
-    /// 生成小兵的方法
+    /// 生成小兵
     /// </summary>
-    private void CreateSoliders() {
-        GameObject obj= ( GameObject.Instantiate(ObjSolider, startTransSolider.position, Quaternion.identity)) as GameObject;
+    /// <param name="startTranSolider">小兵起始位置</param>
+    /// <param name="enemyTowers">敌方箭塔</param>
+    private void CreateSoliders(Transform startTranSolider,Transform[] enemyTowers) {
+        GameObject obj= ( GameObject.Instantiate(ObjSoliderPrefab, startTransSolider.position, Quaternion.identity)) as GameObject;
         obj.transform.parent = objSoliderParent;
+        SoldierMove soldierMv = obj.GetComponent<SoldierMove>();
+        soldierMv.enemyTrans = enemyTowers;
+
     }
 
     /// <summary>
@@ -40,7 +52,7 @@ public class CreateSolider : MonoBehaviour {
         {
             for (int i = 0; i < soliderNum; i++)
             {
-                CreateSoliders();
+                CreateSoliders(startTransSolider, enemyTowers);
                 yield return new WaitForSeconds(delayTime);
             }
             yield return new WaitForSeconds(nextWaveTime);
