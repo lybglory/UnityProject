@@ -10,12 +10,12 @@ public class Towers : MonoBehaviour {
     /// <summary>
     /// 存储碰触到的小兵队列
     /// </summary>
-    private List<GameObject> lsSoldier = new List<GameObject>();
+    public List<GameObject> lsSoldier = new List<GameObject>();
 
     /// <summary>
     /// 存储碰触到的英雄队列
     /// </summary>
-    private List<GameObject> lsHero= new List<GameObject>();
+    public List<GameObject> lsHero= new List<GameObject>();
     /// <summary>
     /// 子弹起始位置
     /// </summary>
