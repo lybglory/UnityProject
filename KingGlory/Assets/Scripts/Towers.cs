@@ -16,6 +16,24 @@ public class Towers : MonoBehaviour {
     /// 存储碰触到的英雄队列
     /// </summary>
     private List<GameObject> lsHero= new List<GameObject>();
+    /// <summary>
+    /// 子弹起始位置
+    /// </summary>
+    [SerializeField]
+    private Transform bulletPosition;
+
+    /// <summary>
+    /// 子弹原型
+    /// </summary>
+    [SerializeField]
+    private GameObject prefabBullet;
+    /// <summary>
+    /// 子弹父类
+    /// </summary>
+    [SerializeField]
+    private Transform bulletParent;
+
+
     void Start () {
         if (this.gameObject.tag.Equals("OwnTower"))
         {
@@ -24,8 +42,12 @@ public class Towers : MonoBehaviour {
         else {
             towerType = 1;
         }
-	}
-	
+        bulletPosition = this.transform.Find("BulletPosition");
+        bulletParent = this.transform.Find("BulletParent");
+
+        InvokeRepeating("CreateBullet", 0.1f, 1f);
+    }
+
 	// Update is called once per frame
 	void Update () {
 		
@@ -57,6 +79,33 @@ public class Towers : MonoBehaviour {
         else
         {
             lsSoldier.Remove(other.gameObject);
+        }
+    }
+
+    /// <summary>
+    /// 创建子弹
+    /// </summary>
+    void CreateBullet()
+    {
+        if (lsSoldier.Count==0&&lsHero.Count==0) {
+            return;
+        }
+        GameObject objBullet = (GameObject)Instantiate(prefabBullet, bulletPosition.position, Quaternion.identity);
+        objBullet.transform.parent = bulletParent;
+        BulletTarget(objBullet);
+    }
+
+    /// <summary>
+    /// 子弹攻击目标，先从小兵集合获取，再从英雄集合获取
+    /// </summary>
+    /// <param name="obj">目标物</param>
+    public void BulletTarget(GameObject obj) {
+        if (lsSoldier.Count > 0)
+        {
+            obj.GetComponent<Bullet>().SetBulletTarget(lsSoldier[0]);
+        }
+        else {
+            obj.GetComponent<Bullet>().SetBulletTarget(lsHero[0]);
         }
     }
 }
