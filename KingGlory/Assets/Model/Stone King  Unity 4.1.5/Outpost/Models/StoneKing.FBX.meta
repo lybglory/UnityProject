@@ -102,6 +102,52 @@ ModelImporter:
     7400000: Take 001
     9500000: //RootNode
     11100000: //RootNode
+    11100002: Bip01
+    11100004: Bip01 Head
+    11100006: Bip01 L Calf
+    11100008: Bip01 L Clavicle
+    11100010: Bip01 L Finger0
+    11100012: Bip01 L Finger01
+    11100014: Bip01 L Finger1
+    11100016: Bip01 L Finger11
+    11100018: Bip01 L Finger2
+    11100020: Bip01 L Finger21
+    11100022: Bip01 L Foot
+    11100024: Bip01 L Forearm
+    11100026: Bip01 L Hand
+    11100028: Bip01 L Thigh
+    11100030: Bip01 L Toe0
+    11100032: Bip01 L UpperArm
+    11100034: Bip01 Neck
+    11100036: Bip01 Pelvis
+    11100038: Bip01 R Calf
+    11100040: Bip01 R Clavicle
+    11100042: Bip01 R Finger0
+    11100044: Bip01 R Finger01
+    11100046: Bip01 R Finger1
+    11100048: Bip01 R Finger11
+    11100050: Bip01 R Finger2
+    11100052: Bip01 R Finger21
+    11100054: Bip01 R Foot
+    11100056: Bip01 R Forearm
+    11100058: Bip01 R Hand
+    11100060: Bip01 R Thigh
+    11100062: Bip01 R Toe0
+    11100064: Bip01 R UpperArm
+    11100066: Bip01 Spine
+    11100068: Bip01 Spine1
+    11100070: Bone01
+    11100072: Bone01(mirrored)
+    11100074: Bone02
+    11100076: Bone02(mirrored)
+    11100078: Bone03
+    11100080: Bone03(mirrored)
+    11100082: Bone04
+    11100084: Bone04(mirrored)
+    11100086: Bone05
+    11100088: Bone06
+    11100090: Stone
+    11100092: StoneKing
     13700000: StoneKing
     13700002: Stone
   externalObjects:
@@ -139,7 +185,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.12
+    globalScale: 0.2
     meshCompression: 0
     addColliders: 0
     importVisibility: 0
@@ -158,7 +204,7 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

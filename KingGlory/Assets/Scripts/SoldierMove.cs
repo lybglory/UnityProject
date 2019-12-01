@@ -22,14 +22,19 @@ public class SoldierMove : MonoBehaviour {
     /// </summary>
     [SerializeField]
     public Transform[] enemyTrans;
-    
+    /// <summary>
+    /// 小兵类型
+    /// </summary>
+    public int type = -1;
 
+    private void Awake()
+    {
+        navSoldier = this.GetComponent<NavMeshAgent>();
+        aniSoldier = this.GetComponent<Animation>();
+    }
 
     void Start () {
-        navSoldier=this.GetComponent<NavMeshAgent>();
-        aniSoldier = this.GetComponent<Animation>();
         transTarget=FindTransTarget();
-
     }
 	
 	// Update is called once per frame
@@ -61,5 +66,18 @@ public class SoldierMove : MonoBehaviour {
             }
         }
         return null;
+    }
+
+    /// <summary>
+    /// 设置寻路层
+    /// </summary>
+    /// <param name="roadMask">寻路层</param>
+    public void SetRoadMask(int roadMask) {
+        if (navSoldier==null) {
+            Debug.LogError("navSoldier is null");
+            navSoldier = this.GetComponent<NavMeshAgent>();
+        }
+        //Debug.Log("roadMask="+ roadMask);
+        navSoldier.areaMask = roadMask;
     }
 }
