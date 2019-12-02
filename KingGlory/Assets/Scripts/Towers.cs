@@ -33,6 +33,13 @@ public class Towers : MonoBehaviour {
     [SerializeField]
     private Transform bulletParent;
 
+    /// <summary>
+    /// 血条
+    /// </summary>
+    [SerializeField]
+    private SliderHP towerSliderHp;
+
+
 
     void Start () {
         if (this.gameObject.tag.Equals("OwnTower"))
@@ -44,7 +51,8 @@ public class Towers : MonoBehaviour {
         }
         bulletPosition = this.transform.Find("BulletPosition");
         bulletParent = this.transform.Find("BulletParent");
-
+        //towerSliderHp = this.transform.GetComponentInChildren<SliderHP>();
+        //towerSliderHp.transform.position = bulletParent.position;
         InvokeRepeating("CreateBullet", 0.1f, 1f);
     }
 
@@ -64,7 +72,7 @@ public class Towers : MonoBehaviour {
         {
             SoldierMove sldMv = other.gameObject.GetComponent<SoldierMove>();
             if (sldMv&&sldMv.type!=towerType) {
-                Debug.Log("lsSoldier.Count=" + lsSoldier.Count);
+                //Debug.Log("lsSoldier.Count=" + lsSoldier.Count);
                 lsSoldier.Add(other.gameObject);
             }
         }

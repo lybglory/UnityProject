@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         bulletParentTower = this.gameObject.GetComponentInParent<Towers>();
-        Debug.Log("bulletParentTower.name=" + bulletParentTower.name);
+        //Debug.Log("bulletParentTower.name=" + bulletParentTower.name);
         Destroy(this.gameObject,1f);
     }
 	
@@ -49,14 +49,32 @@ public class Bullet : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Soldier")) {
-            //从小兵集合队列中移除，再销毁。子弹也要销毁
-            bulletParentTower.lsSoldier.Remove(other.gameObject);
-            Destroy(other.gameObject);
+            //减血,调用减血的方法
+            HPHealth hPHealthBullet = other.GetComponent<HPHealth>();
+            if (hPHealthBullet) {
+                hPHealthBullet.AcceptDamage(0.5f);
+                if (hPHealthBullet.healthSliderHp.HpValue <= 0)
+                {
+                    //从小兵集合队列中移除，再销毁。子弹也要销毁
+                    bulletParentTower.lsSoldier.Remove(other.gameObject);
+                    Destroy(other.gameObject);
+                }
+            }
+            //销毁子弹
             Destroy(this.gameObject);
         } else if (other.gameObject.tag.Equals("Player")) {
-            //从英雄集合队列中移除，再销毁。子弹也要销毁
-            bulletParentTower.lsHero.Remove(other.gameObject);
-            Destroy(other.gameObject);
+            //减血,调用减血的方法
+            HPHealth hPHealthBullet = other.GetComponent<HPHealth>();
+            if (hPHealthBullet)
+            {
+                hPHealthBullet.AcceptDamage(0.5f);
+                if (hPHealthBullet.healthSliderHp.HpValue <= 0)
+                {
+                    //从英雄集合队列中移除，再销毁。子弹也要销毁
+                    bulletParentTower.lsHero.Remove(other.gameObject);
+                    Destroy(other.gameObject);
+                }
+            }
             Destroy(this.gameObject);
         }
     }
