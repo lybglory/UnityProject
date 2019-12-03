@@ -26,6 +26,11 @@ public class SoldierMove : MonoBehaviour {
     /// 小兵类型
     /// </summary>
     public int type = -1;
+    /// <summary>
+    /// 敌军小兵集合
+    /// </summary>
+    [SerializeField]
+    private List<Transform> lsSoldiersTarget = new List<Transform>();
 
     private void Awake()
     {
@@ -112,7 +117,22 @@ public class SoldierMove : MonoBehaviour {
         targetHp.AcceptDamage(damge);
         if (targetHp.healthSliderHp.HpValue<=0) {
             Destroy(transTarget.gameObject);
-            
+            //移除目标对象
         }
+    }
+
+    /// <summary>
+    /// 小兵碰撞触发：进入小兵攻击范围
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerEnter(Collider other)
+    {
+        SoldierMove colSoldier=other.GetComponent<SoldierMove>();
+        //说明碰到的是敌方小兵
+        if (colSoldier && this.type != colSoldier.type) {
+
+        }
+       
+        
     }
 }
