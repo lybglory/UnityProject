@@ -53,6 +53,21 @@ public class SoldierMove : MonoBehaviour {
 
         aniSoldier.CrossFade("Run");
         navSoldier.SetDestination(transTarget.position);
+        float dis = Vector3.Distance(transform.position,transTarget.position);
+        
+        if (dis<= 5f)
+        {   //Debug.Log("distance="+ dis);
+            navSoldier.speed = 0;
+            this.transform.LookAt(transTarget.position);
+            HPHealth soldierHP = this.GetComponent<HPHealth>();
+            if (soldierHP.healthSliderHp.HpValue>0) {
+                aniSoldier.CrossFade("Attack1");
+            }
+            
+        }
+        else {
+            navSoldier.speed = 3.5f;
+        }
     }
 
     /// <summary>
@@ -79,5 +94,25 @@ public class SoldierMove : MonoBehaviour {
         }
         //Debug.Log("roadMask="+ roadMask);
         navSoldier.areaMask = roadMask;
+    }
+
+    /// <summary>
+    /// 攻击动画伤害方法(绑定动画事件英雄-Attack1-Copy出来。自带的不能编辑。)
+    /// </summary>
+    /// <param name="soldierDamg">伤害值</param>
+    public void SoldierTakeDamage(float soldierDamg) {
+        Debug.Log("SoldierTakeDamage调用");
+        if (transTarget==null) {
+            transTarget = FindTransTarget();
+            return;
+        }
+
+        HPHealth targetHp = transTarget.GetComponent<HPHealth>();
+        float damge = Random.Range(0.1f, 0.5f);
+        targetHp.AcceptDamage(damge);
+        if (targetHp.healthSliderHp.HpValue<=0) {
+            Destroy(transTarget.gameObject);
+            
+        }
     }
 }

@@ -52,7 +52,7 @@ public class Bullet : MonoBehaviour {
             //减血,调用减血的方法
             HPHealth hPHealthBullet = other.GetComponent<HPHealth>();
             if (hPHealthBullet) {
-                hPHealthBullet.AcceptDamage(0.5f);
+                hPHealthBullet.AcceptDamage(0.2f);
                 if (hPHealthBullet.healthSliderHp.HpValue <= 0)
                 {
                     //从小兵集合队列中移除，再销毁。子弹也要销毁
