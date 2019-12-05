@@ -78,7 +78,7 @@ public class CreateSolider : MonoBehaviour {
         GameObject obj= ( GameObject.Instantiate(ObjSoliderPrefab, soliderPosition.position, Quaternion.identity)) as GameObject;
         obj.transform.parent = objSoliderParent;
         SoldierMove soldierMv = obj.GetComponent<SoldierMove>();
-        soldierMv.enemyTrans = targetPosition;
+        soldierMv.enemyTowerTrans = targetPosition;
         soldierMv.SetRoadMask(roadMask);
         soldierMv.type = (int)soldierType;
     }
